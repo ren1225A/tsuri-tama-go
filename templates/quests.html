@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>クエスト一覧</title>
+</head>
+<body>
+    <h1>クエスト一覧</h1>
+
+    {% for quest in quests %}
+        <div>
+            <h2>{{ quest.title }}</h2>
+            <p>{{ quest.description }}</p>
+            <p>報酬：{{ quest.reward_points }} ポイント</p>
+            <hr>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
