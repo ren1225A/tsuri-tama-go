@@ -1,6 +1,8 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
+
+db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -42,4 +44,35 @@ class Badge(db.Model):
 
 class UserBadge(db.Model):
     __tablename__ = 'user_badges'
-    id = db.Column(db.Integer, primary_ke
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    badge_id = db.Column(db.Integer, db.ForeignKey('badges.id'))
+    earned_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class FishingSpot(db.Model):
+    __tablename__ = 'fishing_spots'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    location = db.Column(db.Text)
+    description = db.Column(db.Text)
+    difficulty = db.Column(db.Integer, default=1)
+    rules = db.Column(db.Text)
+    tide_info = db.Column(db.Text)
+
+class FishSpecies(db.Model):
+    __tablename__ = 'fish_species'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    rarity_level = db.Column(db.Integer, default=1)
+    description = db.Column(db.Text)
+    season = db.Column(db.Text)
+    habitat = db.Column(db.Text)
+
+class Catch(db.Model):
+    __tablename__ = 'catches'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    fish_id = db.Column(db.Integer, db.ForeignKey('fish_species.id'))
+    spot_id = db.Column(db.Integer, db.ForeignKey('fishing_spots.id'))
+    size_cm = db.Column(db.Float)
+    earned_points = db.Column(db.Integer, default=0)
