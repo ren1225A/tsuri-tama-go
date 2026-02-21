@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- 海の背景ヘッダー -->
+<div class="header">
+    <div class="sea-bg"></div>
+    <div class="header-content">
+        <div class="title-banner">🎣 釣りたまGO!! 🎣</div>
+        <div class="user-info">
+            <span class="username">name: {{ current_user.username if current_user.is_authenticated else 'ゲスト' }}</span>
+            <span class="badge-icon">🐡</span>
+        </div>
+        <!-- レベル表示をカッコ良く -->
+        <div class="level-display">
+            <span class="level-label">LEVEL</span>
+            <span class="level-number">{{ current_user.level if current_user.is_authenticated else '?' }}</span>
+            <div class="level-bar">
+                <div class="level-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 上部メニュー4つ -->
+<div class="menu-grid">
+    <a href="/learn/tools" class="menu-item">
+        <div class="menu-icon">📚</div>
+        <div class="menu-label">道具図鑑</div>
+    </a>
+    <a href="/learn/conditions" class="menu-item">
+        <div class="menu-icon">🌤️</div>
+        <div class="menu-label">釣れる条件</div>
+    </a>
+    <a href="/learn/spots" class="menu-item">
+        <div class="menu-icon">🗺️</div>
+        <div class="menu-label">場所</div>
+    </a>
+    <a href="/learn/rules" class="menu-item">
+        <div class="menu-icon">📜</div>
+        <div class="menu-label">ルール</div>
+    </a>
+</div>
+
+<!-- 釣果ログ -->
+<div class="catch-log">
+    <div class="catch-log-title">～ Best size ～</div>
+    {% if best_catch %}
+    <div class="catch-card">
+        <div class="catch-photo">🐟</div>
+        <div class="catch-info">
+            <p>魚種: {{ best_catch.fish.name }}</p>
+            <p>大きさ: {{ best_catch.size_cm }}cm</p>
+            <p>ポイント: ⭐ {{ best_catch.earned_points }}pt</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="catch-empty">まだ釣果がありません。釣りに行こう！🎣</div>
+    {% endif %}
+</div>
+
+<!-- 下部メニュー4つ -->
+<div class="menu-grid">
+    <a href="/learn/fish" class="menu-item">
+        <div class="menu-icon">🐠</div>
+        <div class="menu-label">魚図鑑</div>
+    </a>
+    <a href="/mission/badges" class="menu-item">
+        <div class="menu-icon">🏅</div>
+        <div class="menu-label">バッジ</div>
+    </a>
+    <a href="/mission/" class="menu-item">
+        <div class="menu-icon">⚔️</div>
+        <div class="menu-label">クエスト</div>
+    </a>
+    <a href="/learn/" class="menu-item">
+        <div class="menu-icon">📖</div>
+        <div class="menu-label">釣の仕方</div>
+    </a>
+</div>
+
+{% endblock %}
