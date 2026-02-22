@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
+{% block bottom_nav %}{% endblock %}
+
 {% block content %}
 
-<!-- 海の背景ヘッダー -->
 <div class="header">
-    <div class="sea-bg"></div>
+    <div class="sea-bg" style="background-image: url('{{ bg_image }}');"></div>
     <div class="header-content">
         <div class="title-banner">🎣 釣りたまGO!! 🎣</div>
         <div class="user-info">
-            <span class="username">name: {{ current_user.username if current_user.is_authenticated else 'ゲスト' }}</span>
+            <span class="username">name: ゲスト</span>
             <span class="badge-icon">🐡</span>
         </div>
-        <!-- レベル表示をカッコ良く -->
         <div class="level-display">
             <span class="level-label">LEVEL</span>
-            <span class="level-number">{{ current_user.level if current_user.is_authenticated else '?' }}</span>
+            <span class="level-number">?</span>
             <div class="level-bar">
                 <div class="level-bar-fill"></div>
             </div>
@@ -22,7 +22,6 @@
     </div>
 </div>
 
-<!-- 上部メニュー4つ -->
 <div class="menu-grid">
     <a href="/learn/tools" class="menu-item">
         <div class="menu-icon">📚</div>
@@ -42,7 +41,6 @@
     </a>
 </div>
 
-<!-- 釣果ログ -->
 <div class="catch-log">
     <div class="catch-log-title">～ Best size ～</div>
     {% if best_catch %}
@@ -59,7 +57,6 @@
     {% endif %}
 </div>
 
-<!-- 下部メニュー4つ -->
 <div class="menu-grid">
     <a href="/learn/fish" class="menu-item">
         <div class="menu-icon">🐠</div>
@@ -78,5 +75,16 @@
         <div class="menu-label">釣の仕方</div>
     </a>
 </div>
+
+<script>
+if (!localStorage.getItem('tsuri_username')) {
+    window.location.href = '/register';
+}
+const savedName = localStorage.getItem('tsuri_username');
+if (savedName) {
+    const el = document.querySelector('.username');
+    if (el) el.textContent = 'name: ' + savedName;
+}
+</script>
 
 {% endblock %}

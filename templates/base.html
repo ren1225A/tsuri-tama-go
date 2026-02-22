@@ -8,13 +8,12 @@
 </head>
 <body>
 
-    <!-- メインコンテンツ -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <!-- 下部ナビゲーション -->
-    <nav class="bottom-nav">
+    {% block bottom_nav %}
+    <nav class="bottom-nav" id="bottom-nav"></nav>
         <a href="/learn/">
             <div class="nav-item">
                 <span>📖</span>
@@ -40,6 +39,7 @@
             </div>
         </a>
     </nav>
+    {% endblock %}
 
 </body>
 </html>

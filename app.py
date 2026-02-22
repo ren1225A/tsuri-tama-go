@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_login import LoginManager, current_user
 from dotenv import load_dotenv
 import os
@@ -32,7 +32,13 @@ app.register_blueprint(mission_bp)
 @app.route('/')
 def index():
     best_catch = None
-    return render_template('index.html', best_catch=best_catch)
+    bg_image = url_for('static', filename='images/background.png')
+    return render_template('index.html', best_catch=best_catch, bg_image=bg_image)
+
+@app.route('/register')
+def register():
+    bg_image = url_for('static', filename='images/background.png')
+    return render_template('register.html', bg_image=bg_image)
 
 with app.app_context():
     db.create_all()
