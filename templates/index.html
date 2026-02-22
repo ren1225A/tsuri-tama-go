@@ -7,13 +7,13 @@
 <div class="header">
     <div class="sea-bg" style="background-image: url('{{ bg_image }}');"></div>
     <div class="header-content">
-        <div class="title-banner">🎣 釣りたまGO!! 🎣</div>
+        <div class="title-banner">🎣 釣りたまGO!!</div>
         <div class="user-info">
-            <span class="username">name: ゲスト</span>
+            <span class="username">勇者：ゲスト</span>
             <span class="badge-icon">🐡</span>
         </div>
         <div class="level-display">
-            <span class="level-label">LEVEL</span>
+            <span class="level-label">✦ LEVEL ✦</span>
             <span class="level-number">?</span>
             <div class="level-bar">
                 <div class="level-bar-fill"></div>
@@ -22,56 +22,62 @@
     </div>
 </div>
 
+<div class="section-title">⚔ 図鑑・知識 ⚔</div>
 <div class="menu-grid">
     <a href="/learn/tools" class="menu-item">
-        <div class="menu-icon">📚</div>
+        <img src="{{ url_for('static', filename='images/tackle_box.png') }}" alt="道具図鑑">
         <div class="menu-label">道具図鑑</div>
     </a>
     <a href="/learn/conditions" class="menu-item">
-        <div class="menu-icon">🌤️</div>
+        <img src="{{ url_for('static', filename='images/lake_day.png') }}" alt="釣れる条件">
         <div class="menu-label">釣れる条件</div>
     </a>
     <a href="/learn/spots" class="menu-item">
-        <div class="menu-icon">🗺️</div>
+        <img src="{{ url_for('static', filename='images/map_icon.png') }}" alt="場所">
         <div class="menu-label">場所</div>
     </a>
     <a href="/learn/rules" class="menu-item">
-        <div class="menu-icon">📜</div>
+        <img src="{{ url_for('static', filename='images/fishing_license.png') }}" alt="ルール">
         <div class="menu-label">ルール</div>
     </a>
 </div>
 
 <div class="catch-log">
-    <div class="catch-log-title">～ Best size ～</div>
+    <div class="catch-log-title">🏆 ～ ベストサイズ ～ 🏆</div>
     {% if best_catch %}
     <div class="catch-card">
         <div class="catch-photo">🐟</div>
         <div class="catch-info">
-            <p>魚種: {{ best_catch.fish.name }}</p>
-            <p>大きさ: {{ best_catch.size_cm }}cm</p>
-            <p>ポイント: ⭐ {{ best_catch.earned_points }}pt</p>
+            <p>魚種：{{ best_catch.fish.name }}</p>
+            <p>大きさ：{{ best_catch.size_cm }}cm</p>
+            <p>ポイント：⭐{{ best_catch.earned_points }}pt</p>
         </div>
     </div>
     {% else %}
-    <div class="catch-empty">まだ釣果がありません。釣りに行こう！🎣</div>
+    <div class="catch-empty">
+        ～ まだ釣果がありません ～<br><br>
+        🎣 釣りに行って<br>
+        記録をつけよう！
+    </div>
     {% endif %}
 </div>
 
+<div class="section-title">🏅 クエスト・挑戦 🏅</div>
 <div class="menu-grid">
     <a href="/learn/fish" class="menu-item">
-        <div class="menu-icon">🐠</div>
+        <img src="{{ url_for('static', filename='images/fish_vintage.png') }}" alt="魚図鑑">
         <div class="menu-label">魚図鑑</div>
     </a>
     <a href="/mission/badges" class="menu-item">
-        <div class="menu-icon">🏅</div>
+        <img src="{{ url_for('static', filename='images/medal.png') }}" alt="バッジ">
         <div class="menu-label">バッジ</div>
     </a>
     <a href="/mission/" class="menu-item">
-        <div class="menu-icon">⚔️</div>
+        <img src="{{ url_for('static', filename='images/gear_inventory.png') }}" alt="クエスト">
         <div class="menu-label">クエスト</div>
     </a>
     <a href="/learn/" class="menu-item">
-        <div class="menu-icon">📖</div>
+        <img src="{{ url_for('static', filename='images/live_bait.png') }}" alt="釣の仕方">
         <div class="menu-label">釣の仕方</div>
     </a>
 </div>
@@ -83,7 +89,7 @@ if (!localStorage.getItem('tsuri_username')) {
 const savedName = localStorage.getItem('tsuri_username');
 if (savedName) {
     const el = document.querySelector('.username');
-    if (el) el.textContent = 'name: ' + savedName;
+    if (el) el.textContent = '勇者：' + savedName;
 }
 </script>
 
