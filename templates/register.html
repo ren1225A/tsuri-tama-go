@@ -44,55 +44,59 @@
             ">ニックネームを入力してはじめよう！</p>
 
 
-        <form method="POST"></form>
+<!-- ★ここから修正 -->
+<form method="POST">
 
-            <!-- 入力欄 -->
-            <input type="text" id="username-input" placeholder="ニックネーム" maxlength="10"
-                style="
-                    width:100%;
-                    padding:14px;
-                    border-radius:10px;
-                    border:2px solid #f0a500;
-                    background:#0a1628;
-                    color:#fff;
-                    font-size:clamp(15px, 4vw, 18px);
-                    text-align:center;
-                    margin-bottom:16px;
-                    outline:none;
-                ">
-            <input type="password" name="password" placeholder="パスワード" required
-                style="
-                    width:100%;
-                    padding:14px;
-                    border-radius:10px;
-                    border:2px solid #f0a500;
-                    background:#0a1628;
-                    color:#fff;
-                    font-size:clamp(15px, 4vw, 18px);
-                    text-align:center;
-                    margin-bottom:16px;
-                    outline:none;
-                ">
-            
-        </form>  
+    <!-- 入力欄 -->
+    <input type="text" name="username" placeholder="ニックネーム" maxlength="10" required
+        style="
+            width:100%;
+            padding:14px;
+            border-radius:10px;
+            border:2px solid #f0a500;
+            background:#0a1628;
+            color:#fff;
+            font-size:clamp(15px, 4vw, 18px);
+            text-align:center;
+            margin-bottom:16px;
+            outline:none;
+        ">
 
-            <!-- ボタン -->
-            <button onclick="saveUsername()"
-                style="
-                    width:100%;
-                    padding:14px;
-                    background:linear-gradient(180deg,#f0a500,#c07800);
-                    border:none;
-                    border-radius:10px;
-                    color:#fff;
-                    font-size:clamp(15px, 4vw, 18px);
-                    font-weight:bold;
-                    cursor:pointer;
-                    box-shadow:0 4px 12px rgba(0,0,0,0.4);
-                    letter-spacing:1px;
-                ">
-                はじめる！🐟
-            </button>
+    <input type="password" name="password" placeholder="パスワード" required
+        style="
+            width:100%;
+            padding:14px;
+            border-radius:10px;
+            border:2px solid #f0a500;
+            background:#0a1628;
+            color:#fff;
+            font-size:clamp(15px, 4vw, 18px);
+            text-align:center;
+            margin-bottom:16px;
+            outline:none;
+        ">
+
+    <!-- ボタン -->
+    <button type="submit"
+        style="
+            width:100%;
+            padding:14px;
+            background:linear-gradient(180deg,#f0a500,#c07800);
+            border:none;
+            border-radius:10px;
+            color:#fff;
+            font-size:clamp(15px, 4vw, 18px);
+            font-weight:bold;
+            cursor:pointer;
+            box-shadow:0 4px 12px rgba(0,0,0,0.4);
+            letter-spacing:1px;
+        ">
+        はじめる！🐟
+    </button>
+
+</form>
+<!-- ★ここまで修正 -->
+
         </div>
     </div>
 </div>
