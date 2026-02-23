@@ -1,31 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>クエスト一覧</title>
-</head>
-<body>
-    <h1>クエスト一覧</h1>
+{% extends "base.html" %}
 
-    {% for quest in quests %}
-        <div>
-            <h2>{{ quest.title }}</h2>
-            <p>{{ quest.description }}</p>
-            <p>報酬：{{ quest.reward_points }} ポイント</p>
+{% block content %}
+<h1>クエスト一覧</h1>
 
-            {% if quest.is_completed %}
-                <p style="color: green; font-weight: bold;">
-                    ✅ 達成済み！
-                </p>
-            {% else %}
-                <a href="{{ url_for('quest.complete_quest', quest_id=quest.id) }}">
-                    <button>達成する</button>
-                </a>
-            {% endif %}
+{% for quest in quests %}
+    <div>
+        <h2>{{ quest.title }}</h2>
+        <p>{{ quest.description }}</p>
+        <p>報酬：{{ quest.reward_points }} ポイント</p>
 
-            <hr>
-        </div>
-    {% endfor %}
+        {% if quest.id in completed_ids %}
+            <p style="color: green; font-weight: bold;">✅ 達成済み！</p>
+            <a href="{{ url_for('quest.reset_quest', quest_id=quest.id) }}">
+                <button>リセット</button>
+            </a>
+        {% else %}
+            <a href="{{ url_for('quest.complete_quest', quest_id=quest.id) }}">
+                <button>達成する</button>
+            </a>
+        {% endif %}
 
-</body>
-</html>
+        <hr>
+    </div>
+{% endfor %}
+{% endblock %}

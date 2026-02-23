@@ -26,7 +26,7 @@ class Quest(db.Model):
     badge_id = db.Column(db.Integer, db.ForeignKey('badges.id'))
     spot_id = db.Column(db.Integer, db.ForeignKey('fishing_spots.id'))
     order_index = db.Column(db.Integer, default=0)
-    is_completed = db.Column(db.Boolean, default=False)
+    
 
     badge = db.relationship('Badge', backref='quests', lazy=True)
 class UserQuestProgress(db.Model):
