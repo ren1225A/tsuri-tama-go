@@ -40,9 +40,12 @@ def complete_quest(quest_id):
             completed_at=datetime.utcnow()
         )
         db.session.add(progress)
-        current_user.total_points += quest.reward_points
+        current_user.total_points = (current_user.total_points or 0) + quest.reward_points
         db.session.commit()
         check_and_award_badges(current_user)
+
+    if progress and progress.status == '完了':
+        return redirect(url_for("quest.show_quests"))   
 
     elif progress.status != '完了':
         progress.status = '完了'
@@ -51,6 +54,7 @@ def complete_quest(quest_id):
         current_user.total_points += quest.reward_points
         db.session.commit()
         check_and_award_badges(current_user)
+        db.session.commit()  # ← 追加すると安全
 
     return redirect(url_for("quest.show_quests"))
 

@@ -23,9 +23,6 @@ def load_user(user_id):
 
 from models import db, User
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 from routes.auth import auth_bp
 from routes.learn import learn_bp

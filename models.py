@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     quests = db.relationship('UserQuestProgress', backref='user', lazy=True)
-    badges = db.relationship('UserBadge', backref='user', lazy=True)
+    badges = db.relationship('UserBadge', back_populates='user', lazy=True)
     catches = db.relationship('Catch', backref='user', lazy=True)
 class Quest(db.Model):
     __tablename__ = 'quests'
@@ -41,19 +41,23 @@ class UserQuestProgress(db.Model):
 class Badge(db.Model):
     __tablename__ = 'badges'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
     image_url = db.Column(db.Text)
-    badge_type = db.Column(db.Text)
+    badge_type = db.Column(db.String(50))
+    # "reading" or "points"
     required_points = db.Column(db.Integer, default=0)
 
-    users = db.relationship('UserBadge', backref='badge', lazy=True)
+    users = db.relationship('UserBadge', back_populates='badge', lazy=True)
 class UserBadge(db.Model):
     __tablename__ = 'user_badges'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     badge_id = db.Column(db.Integer, db.ForeignKey('badges.id'))
     earned_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user = db.relationship('User', back_populates='badges')
+    badge = db.relationship('Badge',back_populates='users')
+
 
 class FishingSpot(db.Model):
     __tablename__ = 'fishing_spots'
