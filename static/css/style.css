@@ -1,4 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;800&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+
+:root {
+    --primary: #2196F3;
+    --primary-light: #64B5F6;
+    --primary-dark: #1565C0;
+    --accent: #FF7043;
+    --accent-light: #FFAB91;
+    --bg: #E3F2FD;
+    --bg-card: #FFFFFF;
+    --bg-nav: #FFFFFF;
+    --text-main: #1A237E;
+    --text-sub: #546E7A;
+    --text-light: #90A4AE;
+    --gold: #FFB300;
+    --gold-light: #FFE082;
+    --green: #43A047;
+    --border: #BBDEFB;
+    --shadow: 0 4px 16px rgba(33,150,243,0.10);
+    --radius: 18px;
+    --radius-sm: 10px;
+}
 
 * {
     margin: 0;
@@ -7,23 +28,26 @@
 }
 
 body {
-    background: linear-gradient(180deg, #0a1628 0%, #1a3a5c 50%, #0d2a4a 100%);
-    color: #fff;
-    font-family: 'M PLUS Rounded 1c', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    font-family: 'Noto Sans JP', 'M PLUS Rounded 1c', sans-serif;
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
-    padding-bottom: 20px;
+    padding-bottom: 90px;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
 /* ========== ヘッダー ========== */
 .header {
     text-align: center;
-    border-bottom: 4px solid #f0a500;
+    background: transparent;
+    border-bottom: 4px solid var(--gold);
     position: relative;
     overflow: hidden;
-    min-height: 360px;
+    min-height: 340px;
 }
 
 .sea-bg {
@@ -34,6 +58,7 @@ body {
     background-size: cover;
     background-position: center;
     z-index: 0;
+    opacity: 0.8;
 }
 
 .sea-bg::before {
@@ -41,170 +66,150 @@ body {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(21, 101, 192, 0.3);
     z-index: 1;
 }
 
 .header-content {
     position: relative;
     z-index: 2;
-    padding: 24px 20px;
+    padding: 28px 20px 24px;
 }
 
-/* RPGウィンドウ風タイトル */
+/* タイトルバナー */
 .title-banner {
     display: inline-block;
-    background: linear-gradient(180deg, #1a3a6c 0%, #0d1f3c 100%);
-    color: #f0e68c;
+    background: rgba(255,255,255,0.85);
+    color: #1A237E;
     font-family: 'DotGothic16', monospace;
     font-size: clamp(18px, 5vw, 26px);
-    font-weight: 400;
-    padding: 12px 28px;
-    border: 3px solid #f0a500;
-    border-radius: 4px;
-    text-shadow: 2px 2px 0px #000;
-    margin-bottom: 14px;
-    box-shadow:
-        inset 0 0 0 2px rgba(255,255,255,0.1),
-        0 0 20px rgba(240,165,0,0.4),
-        4px 4px 0px #000;
+    padding: 12px 32px;
+    border: 2px solid rgba(255,255,255,0.9);
+    border-radius: 40px;
+    text-shadow: none;
+    margin-bottom: 16px;
     letter-spacing: 3px;
-    animation: titleGlow 2s ease-in-out infinite;
-    position: relative;
+    backdrop-filter: blur(8px);
+    animation: titleFloat 3s ease-in-out infinite;
 }
 
-.title-banner::before,
-.title-banner::after {
-    content: '◆';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #f0a500;
-    font-size: 12px;
-}
-.title-banner::before { left: 8px; }
-.title-banner::after { right: 8px; }
-
-@keyframes titleGlow {
-    0%, 100% { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px rgba(240,165,0,0.3), 4px 4px 0px #000; }
-    50% { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1), 0 0 30px rgba(240,165,0,0.7), 4px 4px 0px #000; }
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
 }
 
-/* ユーザー情報 RPGステータス風 */
+/* ユーザー情報 */
 .user-info {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    padding-left: 40px;
 }
 
 .username {
-    font-family: 'DotGothic16', monospace;
-    font-size: clamp(13px, 3.5vw, 16px);
-    color: #f0e68c;
-    text-shadow: 1px 1px 0px #000;
-    background: rgba(0,0,0,0.6);
-    padding: 5px 14px;
-    border: 2px solid #f0a500;
-    border-radius: 4px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(14px, 3.5vw, 17px);
+    font-weight: 700;
+    color: #1A237E;
+    background: rgba(255,255,255,0.85);
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 2px solid rgba(255,255,255,0.9);
     letter-spacing: 1px;
 }
 
 .badge-icon { font-size: 26px; }
 
 /* レベル表示 */
-.level-display { margin-top: 8px; }
+.level-display { margin-top: 10px; }
 
 .level-label {
-    font-family: 'DotGothic16', monospace;
-    font-size: clamp(11px, 2.5vw, 14px);
-    color: #f0a500;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(11px, 2.5vw, 13px);
+    font-weight: 700;
+    color: oklch(62.289% 0.18213 254.926);
     letter-spacing: 6px;
     display: block;
-    text-shadow: 1px 1px 0px #000;
+    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff;
 }
 
 .level-number {
     font-family: 'DotGothic16', monospace;
     font-size: clamp(52px, 14vw, 72px);
-    color: #fff;
-    text-shadow:
-        3px 3px 0px #c07800,
-        0 0 30px rgba(240,165,0,0.8);
+    color: oklch(62.289% 0.18213 254.926);
+    text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff;
     line-height: 1;
 }
 
 .level-bar {
-    width: 80%;
+    width: 75%;
     margin: 10px auto 0;
-    height: 14px;
-    background: #000;
-    border-radius: 2px;
-    border: 2px solid #f0a500;
+    height: 12px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 30px;
     overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.3);
 }
 
 .level-bar-fill {
     height: 100%;
     width: 60%;
-    background: repeating-linear-gradient(
-        90deg,
-        #f0a500 0px,
-        #ffe066 8px,
-        #f0a500 16px
-    );
-    animation: barScroll 1s linear infinite;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold));
+    border-radius: 30px;
+    animation: barGlow 2s ease-in-out infinite;
 }
 
-@keyframes barScroll {
-    0% { background-position: 0 0; }
-    100% { background-position: 32px 0; }
+@keyframes barGlow {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
 }
 
-/* ========== RPGウィンドウ風セクションタイトル ========== */
+/* ========== セクションタイトル ========== */
 .section-title {
-    font-family: 'DotGothic16', monospace;
+    font-family: 'Noto Sans JP', sans-serif;
     text-align: center;
-    color: #f0e68c;
-    font-size: clamp(12px, 3.5vw, 15px);
-    font-weight: 400;
-    margin: 10px 10px 4px;
-    letter-spacing: 3px;
-    text-shadow: 1px 1px 0px #000;
-    background: linear-gradient(180deg, #1a3a6c, #0d1f3c);
-    border: 2px solid #f0a500;
-    border-radius: 4px;
-    padding: 7px;
-    box-shadow: 3px 3px 0px #000;
+    color: var(--primary-dark);
+    font-size: clamp(13px, 3.5vw, 16px);
+    font-weight: 800;
+    margin: 16px 14px 8px;
+    letter-spacing: 2px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-left: 5px solid var(--primary);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    box-shadow: var(--shadow);
+    text-align: left;
 }
 
 /* ========== メニューグリッド ========== */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    padding: 8px 10px;
+    gap: 10px;
+    padding: 8px 14px 12px;
 }
 
 .menu-item {
-    background: linear-gradient(180deg, #2a5a8c 0%, #0d2a4a 100%);
-    border: 2px solid #f0a500;
-    border-radius: 6px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
     padding: 0;
     text-align: center;
     text-decoration: none;
-    color: #fff;
-    transition: transform 0.1s;
-    box-shadow: 3px 3px 0px #000, 0 0 10px rgba(0,0,0,0.4);
+    color: var(--text-main);
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
     aspect-ratio: 1 / 1;
 }
 
 .menu-item:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0px 0px 0px #000;
+    transform: scale(0.95);
+    box-shadow: none;
 }
 
 .menu-item img {
@@ -212,97 +217,82 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: calc(var(--radius) - 2px);
 }
 
 .menu-icon {
     font-size: clamp(28px, 7.5vw, 36px);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     display: block;
-    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8));
 }
 
 .menu-label {
-    font-family: 'DotGothic16', monospace;
+    font-family: 'Noto Sans JP', sans-serif;
     font-size: clamp(9px, 2.5vw, 12px);
-    color: #f0e68c;
-    text-shadow: 1px 1px 0px #000, 0 0 6px #000;
-    letter-spacing: 1px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
-    padding: 8px 4px 5px;
+    background: linear-gradient(0deg, rgba(21,101,192,0.85), transparent);
+    padding: 10px 4px 6px;
+    border-radius: 0 0 calc(var(--radius) - 2px) calc(var(--radius) - 2px);
 }
 
-/* ========== 釣果ログ RPGウィンドウ風 ========== */
+/* ========== 釣果ログ ========== */
 .catch-log {
-    margin: 0 10px 4px;
-    background: linear-gradient(180deg, #040d1a, #0a1e38);
-    border: 3px solid #f0a500;
-    border-radius: 6px;
-    padding: 14px;
-    box-shadow: 3px 3px 0px #000, inset 0 0 30px rgba(0,0,0,0.5);
-    position: relative;
-    min-height: 240px;
+    margin: 0 14px 8px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.catch-log::before {
-    content: '◆';
-    position: absolute;
-    top: 6px; left: 8px;
-    color: #f0a500;
-    font-size: 10px;
-}
-.catch-log::after {
-    content: '◆';
-    position: absolute;
-    top: 6px; right: 8px;
-    color: #f0a500;
-    font-size: 10px;
-}
-
 .catch-log-title {
-    font-family: 'DotGothic16', monospace;
+    font-family: 'Noto Sans JP', sans-serif;
     text-align: center;
-    color: #f0e68c;
+    color: var(--primary-dark);
     font-size: clamp(13px, 3.5vw, 16px);
+    font-weight: 800;
     margin-bottom: 14px;
-    letter-spacing: 3px;
-    text-shadow: 1px 1px 0px #000, 0 0 10px rgba(240,165,0,0.5);
+    letter-spacing: 2px;
 }
 
 .catch-card {
     display: flex;
     align-items: center;
     gap: 15px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 4px;
-    padding: 12px;
-    border: 1px solid rgba(240,165,0,0.4);
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    border: 1px solid var(--border);
 }
 
-.catch-photo { font-size: 64px; }
+.catch-photo { font-size: 56px; }
 
 .catch-info p {
-    font-family: 'DotGothic16', monospace;
-    font-size: clamp(11px, 3vw, 14px);
-    margin-bottom: 6px;
-    color: #ddd;
-    letter-spacing: 1px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(12px, 3vw, 15px);
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--text-sub);
 }
 
 .catch-empty {
-    font-family: 'DotGothic16', monospace;
+    font-family: 'Noto Sans JP', sans-serif;
     text-align: center;
-    color: #888;
-    font-size: clamp(12px, 3vw, 14px);
+    color: var(--text-light);
+    font-size: clamp(13px, 3vw, 15px);
+    font-weight: 500;
     padding: 16px;
-    letter-spacing: 1px;
-    line-height: 2;
+    line-height: 2.2;
 }
 
 /* ========== 下部ナビ ========== */
@@ -313,43 +303,112 @@ body {
     transform: translateX(-50%);
     width: 100%;
     max-width: 480px;
-    background: linear-gradient(180deg, #040d1a, #0a1628);
-    border-top: 3px solid #f0a500;
+    background: var(--bg-nav);
+    border-top: 3px solid var(--border);
     display: flex;
     justify-content: space-around;
-    padding: 8px 0;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.8);
+    padding: 10px 0 12px;
+    box-shadow: 0 -4px 20px rgba(33,150,243,0.10);
     z-index: 100;
 }
 
 .bottom-nav a {
     text-decoration: none;
-    color: #fff;
+    color: var(--text-sub);
     flex: 1;
+    transition: color 0.15s;
+}
+
+.bottom-nav a:active {
+    color: var(--primary);
 }
 
 .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'DotGothic16', monospace;
-    font-size: clamp(9px, 2.5vw, 11px);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(10px, 2.5vw, 12px);
+    font-weight: 700;
     gap: 3px;
-    color: #f0e68c;
-    letter-spacing: 1px;
+    color: var(--text-sub);
+    letter-spacing: 0.5px;
 }
-
-.nav-item:active { opacity: 0.7; }
 
 .nav-item span:first-child {
     font-size: clamp(22px, 5.5vw, 28px);
-    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8));
 }
 
-/* レスポンシブ */
+/* ========== 汎用カード ========== */
+.card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 0 14px 12px;
+    box-shadow: var(--shadow);
+}
+
+/* ========== ボタン ========== */
+button, .btn {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 28px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(33,150,243,0.25);
+    transition: background 0.15s, transform 0.1s;
+}
+
+button:active, .btn:active {
+    background: var(--primary-dark);
+    transform: scale(0.97);
+}
+
+/* ========== クエスト・ミッションページ ========== */
+h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(18px, 5vw, 22px);
+    font-weight: 800;
+    color: var(--primary-dark);
+    padding: 24px 16px 12px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(15px, 4vw, 18px);
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+}
+
+p {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-bottom: 4px;
+}
+
+hr {
+    border: none;
+    border-top: 1.5px solid var(--border);
+    margin: 14px 0;
+}
+
+div {
+    padding: 2px 0;
+}
+
+/* ========== レスポンシブ ========== */
 @media (min-width: 480px) {
     body {
-        border-left: 1px solid rgba(240,165,0,0.3);
-        border-right: 1px solid rgba(240,165,0,0.3);
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
     }
 }

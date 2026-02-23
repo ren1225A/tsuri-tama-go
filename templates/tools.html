@@ -4,8 +4,6 @@
 {% block content %}
 
 <div style="background: linear-gradient(180deg, #0a1628, #1a3a5c); min-height:100vh; padding-bottom:20px;">
-
-    <!-- ヘッダー -->
     <div style="display:flex; align-items:center; gap:10px; padding:16px 12px; border-bottom:2px solid #f0a500;">
         <a href="/" style="text-decoration:none;">
             <div style="background:linear-gradient(180deg,#3a6a9c,#1a3a6c); border:2px solid #f0a500; border-radius:10px; padding:8px 14px; color:#f0e68c; font-size:16px; font-weight:bold;">
@@ -46,29 +44,44 @@
     </div>
 
     <!-- ロッドコンテンツ -->
-    <div id="content-rod" style="padding:0 12px;">
+<div id="content-rod" style="padding:0 12px;">
 
-        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">
-            → ロッド ←
-        </div>
+    <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">
+        → ロッド ←
+    </div>
 
-        <!-- ロッドとは -->
-        <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-                <div style="font-size:56px; flex-shrink:0;">🎣</div>
-                <div>
-                    <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:6px;">～ ロッドとは ～</div>
-                    <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.7;">
-                        ロッド（竿）は釣りの基本道具です。魚の種類や釣り方によって最適なロッドが異なります。初心者はまず自分が狙いたい魚に合わせたロッドを選びましょう！
-                    </p>
-                </div>
+    <!-- ロッドとは -->
+    <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="font-size:56px; flex-shrink:0;">🎣</div>
+            <div>
+                <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:6px;">～ ロッドとは ～</div>
+                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.7;">
+                    ロッド（竿）は釣りの基本道具です。魚の種類や釣り方によって最適なロッドが異なります。初心者はまず自分が狙いたい魚に合わせたロッドを選びましょう！
+                </p>
             </div>
         </div>
+    </div>
 
-        <!-- ① アジングロッド -->
-        <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:10px;">① アジングロッド</div>
-            <div style="color:#f0a500; font-size:12px; margin-bottom:8px;">🐟 対象魚：アジ・メバル</div>
+    <!-- ① アジングロッド -->
+    <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold;">① アジングロッド</div>
+        </div>
+        <div style="color:#f0a500; font-size:12px; margin-bottom:6px;">🐟 アジ・メバル</div>
+        <div style="display:flex; gap:12px; margin-bottom:10px; font-size:13px;">
+            <span style="color:#fff;">おすすめ度：⭐⭐⭐⭐⭐</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">超初心者◎</span>
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：かんたん</span>
+        </div>
+
+        <!-- タップで詳細 -->
+        <div onclick="toggleDetail('rod1')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
+            <span id="rod1-arrow">▶</span> タップで詳細
+        </div>
+        <div id="rod1" style="display:none; margin-top:10px;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -96,11 +109,21 @@
                 </tr>
             </table>
         </div>
+    </div>
 
-        <!-- ② エギングロッド -->
-        <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:10px;">② エギングロッド</div>
-            <div style="color:#f0a500; font-size:12px; margin-bottom:8px;">🦑 対象魚：イカ</div>
+    <!-- ② エギングロッド -->
+    <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
+        <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:8px;">② エギングロッド</div>
+        <div style="color:#f0a500; font-size:12px; margin-bottom:6px;">🦑 イカ</div>
+        <div style="margin-bottom:10px; font-size:13px; color:#fff;">おすすめ度：⭐⭐⭐⭐☆</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
+        </div>
+        <div onclick="toggleDetail('rod2')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
+            <span id="rod2-arrow">▶</span> タップで詳細
+        </div>
+        <div id="rod2" style="display:none; margin-top:10px;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -128,11 +151,21 @@
                 </tr>
             </table>
         </div>
+    </div>
 
-        <!-- ③ シーバスロッド -->
-        <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:10px;">③ シーバスロッド</div>
-            <div style="color:#f0a500; font-size:12px; margin-bottom:8px;">🐡 対象魚：魚全般</div>
+    <!-- ③ シーバスロッド -->
+    <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
+        <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:8px;">③ シーバスロッド</div>
+        <div style="color:#f0a500; font-size:12px; margin-bottom:6px;">🐡 魚全般</div>
+        <div style="margin-bottom:10px; font-size:13px; color:#fff;">おすすめ度：⭐⭐⭐⭐☆</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初級</span>
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
+        </div>
+        <div onclick="toggleDetail('rod3')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
+            <span id="rod3-arrow">▶</span> タップで詳細
+        </div>
+        <div id="rod3" style="display:none; margin-top:10px;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -160,11 +193,21 @@
                 </tr>
             </table>
         </div>
+    </div>
 
-        <!-- ④ サビキロッド -->
-        <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:10px;">④ サビキロッド</div>
-            <div style="color:#f0a500; font-size:12px; margin-bottom:8px;">🐟 対象魚：アジ・イワシ・サバ</div>
+    <!-- ④ サビキロッド -->
+    <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
+        <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:8px;">④ サビキロッド</div>
+        <div style="color:#f0a500; font-size:12px; margin-bottom:6px;">🐟 アジ・イワシ・サバ</div>
+        <div style="margin-bottom:10px; font-size:13px; color:#fff;">おすすめ度：⭐⭐⭐⭐⭐</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">超初心者◎</span>
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：かんたん</span>
+        </div>
+        <div onclick="toggleDetail('rod4')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
+            <span id="rod4-arrow">▶</span> タップで詳細
+        </div>
+        <div id="rod4" style="display:none; margin-top:10px;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -192,11 +235,21 @@
                 </tr>
             </table>
         </div>
+    </div>
 
-        <!-- ⑤ ライトショアジギングロッド -->
-        <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:10px;">⑤ ライトショアジギングロッド</div>
-            <div style="color:#f0a500; font-size:12px; margin-bottom:8px;">🐟 対象魚：イナダ・サバ</div>
+    <!-- ⑤ ライトショアジギングロッド -->
+    <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
+        <div style="color:#f0e68c; font-size:clamp(14px,4vw,17px); font-weight:bold; margin-bottom:8px;">⑤ ライトショアジギングロッド</div>
+        <div style="color:#f0a500; font-size:12px; margin-bottom:6px;">🐟 イナダ・サバ</div>
+        <div style="margin-bottom:10px; font-size:13px; color:#fff;">おすすめ度：⭐⭐⭐☆☆</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
+            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
+        </div>
+        <div onclick="toggleDetail('rod5')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
+            <span id="rod5-arrow">▶</span> タップで詳細
+        </div>
+        <div id="rod5" style="display:none; margin-top:10px;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -224,8 +277,9 @@
                 </tr>
             </table>
         </div>
-
     </div>
+
+</div>
 
     <!-- 他タブ（準備中） -->
     <!-- リールコンテンツ -->
@@ -947,6 +1001,18 @@ function showTab(tab) {
     const activeBtn = document.getElementById('tab-' + tab);
     activeBtn.style.background = 'linear-gradient(180deg,#f0a500,#c07800)';
     activeBtn.style.color = '#fff';
+}
+
+function toggleDetail(id) {
+    const el = document.getElementById(id);
+    const arrow = document.getElementById(id + '-arrow');
+    if (el.style.display === 'none') {
+        el.style.display = 'block';
+        arrow.textContent = '▼';
+    } else {
+        el.style.display = 'none';
+        arrow.textContent = '▶';
+    }
 }
 </script>
 
