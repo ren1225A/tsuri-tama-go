@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,21 +9,21 @@
 body {
     background: linear-gradient(180deg, #0a1628 0%, #1a3a5c 50%, #0d2a4a 100%);
     color: #fff;
-    font-family: 'Arial', sans-serif;
+    font-family: 'M PLUS Rounded 1c', Arial, sans-serif;
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
-    /* padding-bottom は削除！ */
+    padding-bottom: 20px;
 }
-/* ヘッダー */
-/* ヘッダー */
+
+/* ========== ヘッダー ========== */
 .header {
     text-align: center;
-    border-bottom: 3px solid #f0a500;
+    border-bottom: 4px solid #f0a500;
     position: relative;
     overflow: hidden;
-    min-height: 360px; /* 240px → 360px に変更 */
+    min-height: 360px;
 }
 
 .sea-bg {
@@ -39,7 +41,7 @@ body {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.45);
     z-index: 1;
 }
 
@@ -49,21 +51,46 @@ body {
     padding: 24px 20px;
 }
 
-/* タイトル */
+/* RPGウィンドウ風タイトル */
 .title-banner {
     display: inline-block;
-    background: linear-gradient(180deg, #2a6aad, #1a4a8c);
+    background: linear-gradient(180deg, #1a3a6c 0%, #0d1f3c 100%);
     color: #f0e68c;
-    font-size: clamp(20px, 5vw, 28px);
-    font-weight: bold;
-    padding: 10px 32px;
-    border: 2px solid #f0a500;
-    border-radius: 5px;
-    text-shadow: 2px 2px 4px #000;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(18px, 5vw, 26px);
+    font-weight: 400;
+    padding: 12px 28px;
+    border: 3px solid #f0a500;
+    border-radius: 4px;
+    text-shadow: 2px 2px 0px #000;
+    margin-bottom: 14px;
+    box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,0.1),
+        0 0 20px rgba(240,165,0,0.4),
+        4px 4px 0px #000;
+    letter-spacing: 3px;
+    animation: titleGlow 2s ease-in-out infinite;
+    position: relative;
 }
 
+.title-banner::before,
+.title-banner::after {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f0a500;
+    font-size: 12px;
+}
+.title-banner::before { left: 8px; }
+.title-banner::after { right: 8px; }
+
+@keyframes titleGlow {
+    0%, 100% { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px rgba(240,165,0,0.3), 4px 4px 0px #000; }
+    50% { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1), 0 0 30px rgba(240,165,0,0.7), 4px 4px 0px #000; }
+}
+
+/* ユーザー情報 RPGステータス風 */
 .user-info {
     display: flex;
     justify-content: center;
@@ -73,105 +100,179 @@ body {
 }
 
 .username {
-    font-size: clamp(18px, 4.5vw, 24px); /* 大きく */
-    color: #fff;
-    text-shadow: 1px 1px 3px #000;
-    font-weight: bold;
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: #f0e68c;
+    text-shadow: 1px 1px 0px #000;
+    background: rgba(0,0,0,0.6);
+    padding: 5px 14px;
+    border: 2px solid #f0a500;
+    border-radius: 4px;
+    letter-spacing: 1px;
 }
+
 .badge-icon { font-size: 26px; }
 
-/* レベル */
-.level-display {
-    margin-top: 6px;
-}
+/* レベル表示 */
+.level-display { margin-top: 8px; }
 
 .level-label {
-    font-size: clamp(14px, 3.5vw, 18px); /* 大きく */
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(11px, 2.5vw, 14px);
     color: #f0a500;
-    letter-spacing: 4px;
+    letter-spacing: 6px;
     display: block;
-    text-shadow: 1px 1px 3px #000;
-    font-weight: bold;
+    text-shadow: 1px 1px 0px #000;
 }
 
-
 .level-number {
-    font-size: clamp(56px, 15vw, 80px); /* 大きく */
-    font-weight: bold;
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(52px, 14vw, 72px);
     color: #fff;
-    text-shadow: 0 0 20px rgba(240,165,0,0.8), 2px 2px 8px #000;
+    text-shadow:
+        3px 3px 0px #c07800,
+        0 0 30px rgba(240,165,0,0.8);
     line-height: 1;
 }
 
 .level-bar {
     width: 80%;
     margin: 10px auto 0;
-    height: 10px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 5px;
-    border: 1px solid #f0a500;
+    height: 14px;
+    background: #000;
+    border-radius: 2px;
+    border: 2px solid #f0a500;
     overflow: hidden;
 }
 
 .level-bar-fill {
     height: 100%;
     width: 60%;
-    background: linear-gradient(90deg, #f0a500, #ffe066);
-    border-radius: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #f0a500 0px,
+        #ffe066 8px,
+        #f0a500 16px
+    );
+    animation: barScroll 1s linear infinite;
 }
 
-/* メニューグリッド */
+@keyframes barScroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 32px 0; }
+}
+
+/* ========== RPGウィンドウ風セクションタイトル ========== */
+.section-title {
+    font-family: 'DotGothic16', monospace;
+    text-align: center;
+    color: #f0e68c;
+    font-size: clamp(12px, 3.5vw, 15px);
+    font-weight: 400;
+    margin: 10px 10px 4px;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 0px #000;
+    background: linear-gradient(180deg, #1a3a6c, #0d1f3c);
+    border: 2px solid #f0a500;
+    border-radius: 4px;
+    padding: 7px;
+    box-shadow: 3px 3px 0px #000;
+}
+
+/* ========== メニューグリッド ========== */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 14px 12px;
+    gap: 8px;
+    padding: 8px 10px;
 }
 
 .menu-item {
-    background: linear-gradient(180deg, #3a6a9c, #1a3a6c);
+    background: linear-gradient(180deg, #2a5a8c 0%, #0d2a4a 100%);
     border: 2px solid #f0a500;
-    border-radius: 14px;
-    padding: 18px 5px; /* 14px → 18px に変更 */
+    border-radius: 6px;
+    padding: 0;
     text-align: center;
     text-decoration: none;
     color: #fff;
-    transition: transform 0.1s, box-shadow 0.1s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    transition: transform 0.1s;
+    box-shadow: 3px 3px 0px #000, 0 0 10px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.menu-item:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px #000;
+}
+
+.menu-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .menu-icon {
-    font-size: clamp(30px, 8vw, 38px); /* 少し大きく */
-    margin-bottom: 8px;
+    font-size: clamp(28px, 7.5vw, 36px);
+    margin-bottom: 6px;
+    display: block;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8));
 }
 
 .menu-label {
-    font-size: clamp(11px, 3vw, 14px); /* 少し大きく */
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(9px, 2.5vw, 12px);
     color: #f0e68c;
-    font-weight: bold;
+    text-shadow: 1px 1px 0px #000, 0 0 6px #000;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+    padding: 8px 4px 5px;
 }
-/* 釣果ログ */
+
+/* ========== 釣果ログ RPGウィンドウ風 ========== */
 .catch-log {
-    margin: 0 12px;
-    background: linear-gradient(180deg, #051020, #0a1e38);
-    border: 2px solid #f0a500;
-    border-radius: 12px;
-    padding: 24px 14px;
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
-    flex: 1;
-    min-height: 240px; /* 160px → 240px に変更 */
+    margin: 0 10px 4px;
+    background: linear-gradient(180deg, #040d1a, #0a1e38);
+    border: 3px solid #f0a500;
+    border-radius: 6px;
+    padding: 14px;
+    box-shadow: 3px 3px 0px #000, inset 0 0 30px rgba(0,0,0,0.5);
+    position: relative;
+    min-height: 240px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.catch-log-title {
-    text-align: center;
+.catch-log::before {
+    content: '◆';
+    position: absolute;
+    top: 6px; left: 8px;
     color: #f0a500;
-    font-size: clamp(13px, 3vw, 16px);
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-    font-weight: bold;
+    font-size: 10px;
+}
+.catch-log::after {
+    content: '◆';
+    position: absolute;
+    top: 6px; right: 8px;
+    color: #f0a500;
+    font-size: 10px;
+}
+
+.catch-log-title {
+    font-family: 'DotGothic16', monospace;
+    text-align: center;
+    color: #f0e68c;
+    font-size: clamp(13px, 3.5vw, 16px);
+    margin-bottom: 14px;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 0px #000, 0 0 10px rgba(240,165,0,0.5);
 }
 
 .catch-card {
@@ -179,26 +280,32 @@ body {
     align-items: center;
     gap: 15px;
     background: rgba(255,255,255,0.05);
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 12px;
+    border: 1px solid rgba(240,165,0,0.4);
 }
 
 .catch-photo { font-size: 64px; }
 
 .catch-info p {
-    font-size: clamp(12px, 3vw, 15px);
-    margin-bottom: 5px;
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(11px, 3vw, 14px);
+    margin-bottom: 6px;
     color: #ddd;
+    letter-spacing: 1px;
 }
 
 .catch-empty {
+    font-family: 'DotGothic16', monospace;
     text-align: center;
-    color: #aaa;
-    font-size: clamp(12px, 3vw, 15px);
-    padding: 12px;
+    color: #888;
+    font-size: clamp(12px, 3vw, 14px);
+    padding: 16px;
+    letter-spacing: 1px;
+    line-height: 2;
 }
 
-/* 下部ナビ */
+/* ========== 下部ナビ ========== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -206,12 +313,13 @@ body {
     transform: translateX(-50%);
     width: 100%;
     max-width: 480px;
-    background: linear-gradient(180deg, #051020, #0a1628);
-    border-top: 2px solid #f0a500;
+    background: linear-gradient(180deg, #040d1a, #0a1628);
+    border-top: 3px solid #f0a500;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+    padding: 8px 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.8);
+    z-index: 100;
 }
 
 .bottom-nav a {
@@ -224,20 +332,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: clamp(10px, 2.5vw, 13px);
-    gap: 4px;
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(9px, 2.5vw, 11px);
+    gap: 3px;
     color: #f0e68c;
-    font-weight: bold;
+    letter-spacing: 1px;
 }
+
+.nav-item:active { opacity: 0.7; }
 
 .nav-item span:first-child {
-    font-size: clamp(22px, 5vw, 28px);
+    font-size: clamp(22px, 5.5vw, 28px);
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8));
 }
 
-/* レスポンシブ：480px以上の画面 */
+/* レスポンシブ */
 @media (min-width: 480px) {
     body {
-        border-left: 1px solid #f0a500;
-        border-right: 1px solid #f0a500;
+        border-left: 1px solid rgba(240,165,0,0.3);
+        border-right: 1px solid rgba(240,165,0,0.3);
     }
 }
