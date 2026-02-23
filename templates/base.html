@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>釣りたまGO!!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block bottom_nav %}
+    <nav class="bottom-nav" id="bottom-nav"></nav>
+        <a href="/learn/">
+            <div class="nav-item">
+                <span>📖</span>
+                <span>ガイド</span>
+            </div>
+        </a>
+        <a href="/mission/">
+            <div class="nav-item">
+                <span>📜</span>
+                <span>クエスト</span>
+            </div>
+        </a>
+        <a href="/learn/tools">
+            <div class="nav-item">
+                <span>🎣</span>
+                <span>道具</span>
+            </div>
+        </a>
+        <a href="/catch">
+            <div class="nav-item">
+                <span>🏆</span>
+                <span>記録</span>
+            </div>
+        </a>
+    </nav>
+    {% endblock %}
+
+</body>
+</html>
