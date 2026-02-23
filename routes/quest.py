@@ -7,15 +7,17 @@ from routes.badge import check_and_award_badges
 quest_bp = Blueprint("quest", __name__)
 
 @quest_bp.route("/quests")
-@login_required
+@quest_bp.route("/quests/")
 def show_quests():
     quests = Quest.query.all()
-
-    # ユーザーごとの完了済みクエストIDを取得
-    completed_ids = {
-        p.quest_id for p in current_user.quests if p.status == '完了'
-    }
-
+    
+    if current_user.is_authenticated:
+        completed_ids = {
+            p.quest_id for p in current_user.quests if p.status == '完了'
+        }
+    else:
+        completed_ids = set()
+    
     return render_template("quests.html", quests=quests, completed_ids=completed_ids)
 
 
@@ -24,14 +26,12 @@ def show_quests():
 def complete_quest(quest_id):
     quest = Quest.query.get_or_404(quest_id)
 
-    # すでに完了しているか確認
     progress = UserQuestProgress.query.filter_by(
         user_id=current_user.id,
         quest_id=quest_id
     ).first()
 
     if progress is None:
-        # 初めて達成する場合：新規作成
         progress = UserQuestProgress(
             user_id=current_user.id,
             quest_id=quest_id,
@@ -40,23 +40,16 @@ def complete_quest(quest_id):
             completed_at=datetime.utcnow()
         )
         db.session.add(progress)
-
-        # ポイント付与
         current_user.total_points += quest.reward_points
         db.session.commit()
-
-        # バッジ取得チェック
         check_and_award_badges(current_user)
 
     elif progress.status != '完了':
-        # 進行中だった場合：完了に更新
         progress.status = '完了'
         progress.progress_percent = 100
         progress.completed_at = datetime.utcnow()
         current_user.total_points += quest.reward_points
         db.session.commit()
-
-        # バッジ取得チェック
         check_and_award_badges(current_user)
 
     return redirect(url_for("quest.show_quests"))
@@ -71,7 +64,6 @@ def reset_quest(quest_id):
     ).first()
 
     if progress:
-        # ポイントを戻す
         quest = Quest.query.get_or_404(quest_id)
         current_user.total_points -= quest.reward_points
         if current_user.total_points < 0:
