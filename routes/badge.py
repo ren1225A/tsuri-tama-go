@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for
-from flask_login import LoginManager, current_user
+from flask import Flask
+from flask_login import LoginManager
 from dotenv import load_dotenv
 import os
 
@@ -21,12 +21,6 @@ from models import User
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-from models import db, User
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
 from routes.auth import auth_bp
 from routes.learn import learn_bp
 from routes.mission import mission_bp
@@ -38,17 +32,6 @@ app.register_blueprint(learn_bp)
 app.register_blueprint(mission_bp)
 app.register_blueprint(quest_bp)   # ← ここに移動
 app.register_blueprint(badge_bp)
-
-@app.route('/')
-def index():
-    best_catch = None
-    bg_image = url_for('static', filename='images/background.png')
-    return render_template('index.html', best_catch=best_catch, bg_image=bg_image)
-
-@app.route('/register')
-def register():
-    bg_image = url_for('static', filename='images/background.png')
-    return render_template('register.html', bg_image=bg_image)
 
 with app.app_context():
     db.create_all()

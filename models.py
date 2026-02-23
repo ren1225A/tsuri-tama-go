@@ -13,6 +13,9 @@ class User(db.Model, UserMixin):
     total_points = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    quests = db.relationship('UserQuestProgress', backref='user', lazy=True)
+    badges = db.relationship('UserBadge', backref='user', lazy=True)
+    catches = db.relationship('Catch', backref='user', lazy=True)
 class Quest(db.Model):
     __tablename__ = 'quests'
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +26,9 @@ class Quest(db.Model):
     badge_id = db.Column(db.Integer, db.ForeignKey('badges.id'))
     spot_id = db.Column(db.Integer, db.ForeignKey('fishing_spots.id'))
     order_index = db.Column(db.Integer, default=0)
+    is_completed = db.Column(db.Boolean, default=False)
 
+    badge = db.relationship('Badge', backref='quests', lazy=True)
 class UserQuestProgress(db.Model):
     __tablename__ = 'user_quest_progress'
     id = db.Column(db.Integer, primary_key=True)
@@ -42,6 +47,7 @@ class Badge(db.Model):
     badge_type = db.Column(db.Text)
     required_points = db.Column(db.Integer, default=0)
 
+    users = db.relationship('UserBadge', backref='badge', lazy=True)
 class UserBadge(db.Model):
     __tablename__ = 'user_badges'
     id = db.Column(db.Integer, primary_key=True)
@@ -76,3 +82,6 @@ class Catch(db.Model):
     spot_id = db.Column(db.Integer, db.ForeignKey('fishing_spots.id'))
     size_cm = db.Column(db.Float)
     earned_points = db.Column(db.Integer, default=0)
+
+    fish = db.relationship('FishSpecies', backref='catches', lazy=True)
+    spot = db.relationship('FishingSpot', backref='catches', lazy=True)
