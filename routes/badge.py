@@ -1,47 +1,67 @@
-from flask import Flask
-from flask_login import LoginManager
-from dotenv import load_dotenv
-import os
+from flask import Blueprint, render_template, flash
+from flask_login import login_required, current_user
+from models import db, Badge, UserBadge
+from datetime import datetime
 
-load_dotenv()
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'super-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tsuri.db'
+badge_bp = Blueprint('badge', __name__)
 
 
-from models import db, Quest
-db.init_app(app)
+def check_and_award_badges(user):
+    """バッジの取得条件をチェックして、条件を満たしていれば付与する"""
+    all_badges = Badge.query.all()
+    already_earned_ids = {ub.badge_id for ub in user.badges}
+    newly_earned = []
 
-login_manager = LoginManager(app)
-login_manager.login_view = 'auth.login'
-from models import User
+    for badge in all_badges:
+        if badge.id in already_earned_ids:
+            continue  # すでに取得済みはスキップ
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+        earned = False
 
-from routes.auth import auth_bp
-from routes.learn import learn_bp
-from routes.mission import mission_bp
-from routes.quest import quest_bp   # ← ここに移動
-from routes.badge import badge_bp
+        # ① ポイント数による条件チェック
+        if badge.badge_type == 'points':
+            if user.total_points >= badge.required_points:
+                earned = True
 
-app.register_blueprint(auth_bp)
-app.register_blueprint(learn_bp)
-app.register_blueprint(mission_bp)
-app.register_blueprint(quest_bp)   # ← ここに移動
-app.register_blueprint(badge_bp)
+        # ② 釣った魚の数による条件チェック
+        elif badge.badge_type == 'catch_count':
+            catch_count = len(user.catches)
+            if catch_count >= badge.required_points:  # required_pointsを必要数として流用
+                earned = True
 
-with app.app_context():
-    db.create_all()
-    print("DBを作成しました！")
-    # ↓ ここに一時的に追加
-    if Quest.query.count() == 0:
-        q1 = Quest(title="初めての釣り", description="魚を1匹釣ろう", reward_points=10)
-        db.session.add(q1)
+        # ③ クエスト完了数による条件チェック
+        elif badge.badge_type == 'quest_count':
+            completed_quests = sum(
+                1 for q in user.quests if q.status == '完了'
+            )
+            if completed_quests >= badge.required_points:
+                earned = True
+
+        if earned:
+            new_badge = UserBadge(
+                user_id=user.id,
+                badge_id=badge.id,
+                earned_at=datetime.utcnow()
+            )
+            db.session.add(new_badge)
+            newly_earned.append(badge)
+
+    if newly_earned:
         db.session.commit()
-        print("クエストを追加しました！")
-if __name__ == '__main__':
-    app.run(debug=True)
-    
+
+    return newly_earned  # 新たに獲得したバッジのリストを返す
+
+
+@badge_bp.route('/badges')
+@login_required
+def badge_list():
+    """バッジ一覧ページ"""
+    # 条件チェックして新しいバッジがあればflashで通知
+    newly_earned = check_and_award_badges(current_user)
+    for badge in newly_earned:
+        flash(f'🎉 新しいバッジ「{badge.name}」を獲得しました！', 'success')
+
+    all_badges = Badge.query.all()
+    earned_ids = {ub.badge_id for ub in current_user.badges}
+
+    return render_template('badge.html', badges=all_badges, earned_ids=earned_ids)
