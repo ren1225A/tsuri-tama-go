@@ -43,6 +43,9 @@
                 margin-bottom:28px;
             ">ニックネームを入力してはじめよう！</p>
 
+
+        <form method="POST"></form>
+
             <!-- 入力欄 -->
             <input type="text" id="username-input" placeholder="ニックネーム" maxlength="10"
                 style="
@@ -57,6 +60,21 @@
                     margin-bottom:16px;
                     outline:none;
                 ">
+            <input type="password" name="password" placeholder="パスワード" required
+                style="
+                    width:100%;
+                    padding:14px;
+                    border-radius:10px;
+                    border:2px solid #f0a500;
+                    background:#0a1628;
+                    color:#fff;
+                    font-size:clamp(15px, 4vw, 18px);
+                    text-align:center;
+                    margin-bottom:16px;
+                    outline:none;
+                ">
+            
+        </form>  
 
             <!-- ボタン -->
             <button onclick="saveUsername()"
@@ -79,16 +97,6 @@
     </div>
 </div>
 
-<script>
-function saveUsername() {
-    const name = document.getElementById('username-input').value.trim();
-    if (name === '') {
-        alert('ニックネームを入力してください！');
-        return;
-    }
-    localStorage.setItem('tsuri_username', name);
-    window.location.href = '/';
-}
-</script>
+
 
 {% endblock %}
