@@ -45,8 +45,7 @@
 
 
 <!-- ★ここから修正 -->
-<form method="POST">
-
+<form method="POST" action="{{ url_for('auth.register') }}"></form>
     <!-- 入力欄 -->
     <input type="text" name="username" placeholder="ニックネーム" maxlength="10" required
         style="

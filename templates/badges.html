@@ -53,6 +53,21 @@
         .badge-name {
             margin-top: 8px;
             font-size: 14px;
+            font-weight: bold;
+        }
+
+        .badge-status {
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .achieved {
+            color: gold;
+            font-weight: bold;
+        }
+
+        .condition {
+            color: #555;
         }
     </style>
 </head>
@@ -72,9 +87,15 @@
             {% if badge.id in acquired_badge_ids %}
                 <img src="{{ url_for('static', filename=badge.icon_path) }}"
                      class="badge-img acquired">
+                <div class="badge-status achieved">
+                    🏆 達成済み！
+                </div>
             {% else %}
                 <img src="{{ url_for('static', filename=badge.icon_path) }}"
                      class="badge-img locked">
+                <div class="badge-status condition">
+                    条件：{{ badge.description }}
+                </div>
             {% endif %}
 
             <div class="badge-name">
