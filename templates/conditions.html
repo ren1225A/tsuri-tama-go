@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+
+{% block bottom_nav %}{% endblock %}
+
+{% block content %}
+
+<div style="background: linear-gradient(180deg, #0a1628, #1a3a5c); min-height:100vh; padding-bottom:20px;">
+
+    <!-- ヘッダー -->
+    <div style="display:flex; align-items:center; gap:10px; padding:16px 12px; border-bottom:2px solid #f0a500;">
+        <a href="/?skip_splash=1" style="text-decoration:none;">
+            <div style="background:linear-gradient(180deg,#3a6a9c,#1a3a6c); border:2px solid #f0a500; border-radius:10px; padding:8px 14px; color:#f0e68c; font-size:16px; font-weight:bold;">
+                ← 戻る
+            </div>
+        </a>
+        <div style="flex:1; text-align:center; background:linear-gradient(180deg,#2a6aad,#1a4a8c); border:2px solid #f0a500; border-radius:8px; padding:10px; color:#f0e68c; font-size:clamp(18px,5vw,24px); font-weight:bold; text-shadow:2px 2px 4px #000;">
+            🌤️ 釣れる条件
+        </div>
+    </div>
+
+    <!-- 現在の釣れやすさ（ワイヤーフレームのトップボックス） -->
+    <div style="margin:14px 12px; background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px;">
+        <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8; text-align:center;">
+            🎣 釣果を上げるには<span style="color:#f0e68c; font-weight:bold;">「いつ・どこで・どんな状況で」</span>釣るかがとても重要！<br>
+            5つの条件を覚えて釣果アップを目指そう！
+        </p>
+    </div>
+
+    <!-- ① 時間帯 -->
+    <div style="margin:0 12px 14px; background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; overflow:hidden;">
+        <!-- ヘッダー行（タイトル＋詳細ボタン） -->
+        <div onclick="toggleSection('sec1')" style="background:linear-gradient(90deg,#f0a500,#c07800); padding:18px 14px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;">
+            <div style="color:#fff; font-size:clamp(15px,4vw,18px); font-weight:bold;">🌅 ① 時間帯</div>
+            <div id="sec1-btn" style="background:rgba(0,0,0,0.25); border:2px solid rgba(255,255,255,0.5); border-radius:8px; padding:4px 10px; color:#fff; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px; transition:all 0.2s;">
+                詳細 <span id="sec1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
+        </div>
+        <!-- 折りたたみコンテンツ -->
+        <div id="sec1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <div style="padding:14px;">
+                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8; margin-bottom:12px;">
+                    魚によって活動する時間帯が違うので、狙う魚ごとの釣りやすい時間帯を確認しておこう。早朝（日の出前後）・夕暮れ（日の入り前後）は「朝マズメ」「夕マズメ」と呼ばれ、魚が活発に動きだす絶好のチャンス！初心者ならずとも、この時間帯はハズせない。
+                </p>
+                <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
+                        <tr style="background:rgba(240,165,0,0.2);">
+                            <th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">時間帯</th>
+                            <th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">名称</th>
+                            <th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">釣れやすさ</th>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
+                            <td style="color:#ddd; padding:7px 6px;">日の出前後</td>
+                            <td style="color:#f0e68c; padding:7px 6px; font-weight:bold;">朝マズメ</td>
+                            <td style="color:#ddd; padding:7px 6px;">★★★★★</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
+                            <td style="color:#ddd; padding:7px 6px;">日中</td>
+                            <td style="color:#aaa; padding:7px 6px;">デイゲーム</td>
+                            <td style="color:#ddd; padding:7px 6px;">★★☆☆☆</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
+                            <td style="color:#ddd; padding:7px 6px;">日の入り前後</td>
+                            <td style="color:#f0e68c; padding:7px 6px; font-weight:bold;">夕マズメ</td>
+                            <td style="color:#ddd; padding:7px 6px;">★★★★★</td>
+                        </tr>
+                        <tr>
+                            <td style="color:#ddd; padding:7px 6px;">夜間</td>
+                            <td style="color:#aaa; padding:7px 6px;">ナイトゲーム</td>
+                            <td style="color:#ddd; padding:7px 6px;">★★★☆☆</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ② 潮汐 -->
+    <div style="margin:0 12px 14px; background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; overflow:hidden;">
+        <div onclick="toggleSection('sec2')" style="background:linear-gradient(90deg,#2a6aad,#1a4a8c); padding:18px 14px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;">
+            <div style="color:#fff; font-size:clamp(15px,4vw,18px); font-weight:bold;">🌊 ② 潮汐（ちょうせき）</div>
+            <div id="sec2-btn" style="background:rgba(0,0,0,0.25); border:2px solid rgba(255,255,255,0.5); border-radius:8px; padding:4px 10px; color:#fff; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px; transition:all 0.2s;">
+                詳細 <span id="sec2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
+        </div>
+        <div id="sec2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <div style="padding:14px;">
+                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8; margin-bottom:12px;">
+                    実は釣りにも影響がある、潮の満ち引き。どの潮位が狙い目なのか、釣りたい魚や場所・季節に合わせて情報を手に入れよう。インターネットや釣り情報誌などで公開されている潮汐表の他、地元の釣具店で聞いてみるのもおすすめ！
+                </p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; text-align:center;">
+                        <div style="font-size:28px; margin-bottom:4px;">🌕</div>
+                        <div style="color:#f0e68c; font-weight:bold; font-size:13px; margin-bottom:4px;">大潮</div>
+                        <p style="color:#ccc; font-size:11px; line-height:1.5;">潮の動きが最大。魚が活発に動き釣れやすい！</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; text-align:center;">
+                        <div style="font-size:28px; margin-bottom:4px;">🌓</div>
+                        <div style="color:#f0e68c; font-weight:bold; font-size:13px; margin-bottom:4px;">中潮</div>
+                        <p style="color:#ccc; font-size:11px; line-height:1.5;">大潮の次に釣れやすい。安定した釣果が期待できる。</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; text-align:center;">
+                        <div style="font-size:28px; margin-bottom:4px;">🌑</div>
+                        <div style="color:#aaa; font-weight:bold; font-size:13px; margin-bottom:4px;">小潮</div>
+                        <p style="color:#ccc; font-size:11px; line-height:1.5;">潮の動きが少なく釣りにくい日。</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; text-align:center;">
+                        <div style="font-size:28px; margin-bottom:4px;">⚫</div>
+                        <div style="color:#aaa; font-weight:bold; font-size:13px; margin-bottom:4px;">長潮・若潮</div>
+                        <p style="color:#ccc; font-size:11px; line-height:1.5;">潮がほぼ動かない。最も釣りにくい日。</p>
+                    </div>
+                </div>
+                <div style="margin-top:12px; background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                    <div style="color:#f0e68c; font-size:13px; font-weight:bold; margin-bottom:10px;">📈 タイドグラフの見方</div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:8px; padding:10px; margin-bottom:12px;">
+                        <div style="color:#f0e68c; font-size:13px; font-weight:bold; margin-bottom:6px;">📈 タイドグラフとは？</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,12px); line-height:1.7;">
+                            タイドグラフとは<span style="color:#f0e68c;">潮の満ち引き（潮位）を時間ごとに表したグラフ</span>のこと。縦軸が潮位（水位の高さ）、横軸が時間を表しています。釣りに行く前に必ずチェックして、釣れやすいタイミングを把握しておこう！
+                        </p>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+                            <span style="background:rgba(79,195,247,0.2); border:1px solid #4fc3f7; border-radius:12px; padding:3px 10px; font-size:11px; color:#4fc3f7;">縦軸＝潮位（cm）</span>
+                            <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">横軸＝時間</span>
+                            <span style="background:rgba(129,199,132,0.2); border:1px solid #81c784; border-radius:12px; padding:3px 10px; font-size:11px; color:#81c784;">山＝満潮・谷＝干潮</span>
+                        </div>
+                    </div>
+                    <div style="background:#0a1628; border-radius:8px; padding:12px; margin-bottom:12px; text-align:center;">
+                        <div style="color:#aaa; font-size:11px; margin-bottom:6px;">潮位 ↑</div>
+                        <div style="position:relative; height:80px; margin:0 10px;">
+                            <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:rgba(240,165,0,0.3);"></div>
+                            <svg viewBox="0 0 300 80" style="width:100%; height:100%;">
+                                <polyline points="0,70 30,55 60,30 90,10 120,5 150,10 180,30 210,55 240,70 270,60 300,40" fill="none" stroke="#f0a500" stroke-width="2.5"/>
+                                <line x1="0" y1="5" x2="300" y2="5" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="4"/>
+                                <line x1="0" y1="70" x2="300" y2="70" stroke="#81c784" stroke-width="1" stroke-dasharray="4"/>
+                                <text x="45" y="75" fill="#f0e68c" font-size="9">↑上げ潮</text>
+                                <text x="170" y="75" fill="#f0e68c" font-size="9">↓下げ潮</text>
+                            </svg>
+                            <div style="display:flex; justify-content:space-between; margin-top:2px;">
+                                <span style="color:#81c784; font-size:10px;">干潮</span>
+                                <span style="color:#4fc3f7; font-size:10px;">満潮</span>
+                                <span style="color:#81c784; font-size:10px;">干潮</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="color:#f0e68c; font-size:12px; font-weight:bold; margin-bottom:8px;">🎯 釣れやすい潮のタイミング</div>
+                    <div style="background:rgba(79,195,247,0.1); border:1px solid #4fc3f7; border-radius:8px; padding:10px; margin-bottom:8px;">
+                        <div style="color:#4fc3f7; font-weight:bold; font-size:13px; margin-bottom:4px;">⬆️ 上げ3分・上げ7分</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,12px); line-height:1.7;">干潮から満潮に向かって潮が動き始めた頃。特に<span style="color:#f0e68c;">「上げ3分」</span>（干潮直後）と<span style="color:#f0e68c;">「上げ7分」</span>（満潮手前）が最も釣れやすいタイミング！</p>
+                    </div>
+                    <div style="background:rgba(129,199,132,0.1); border:1px solid #81c784; border-radius:8px; padding:10px; margin-bottom:8px;">
+                        <div style="color:#81c784; font-weight:bold; font-size:13px; margin-bottom:4px;">⬇️ 下げ3分・下げ7分</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,12px); line-height:1.7;">満潮から干潮に向かって潮が引き始めた頃。<span style="color:#f0e68c;">「下げ3分」</span>（満潮直後）が特に狙い目。</p>
+                    </div>
+                    <div style="background:rgba(239,83,80,0.1); border:1px solid #ef5350; border-radius:8px; padding:10px;">
+                        <div style="color:#ef5350; font-weight:bold; font-size:13px; margin-bottom:4px;">😴 潮止まりは注意！</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,12px); line-height:1.7;">満潮・干潮の前後は潮がほぼ動かない<span style="color:#f0e68c;">「潮止まり」</span>。魚の活性が下がり釣れにくくなる。</p>
+                    </div>
+                    <div style="margin-top:10px;">
+                        <div style="color:#f0e68c; font-size:12px; font-weight:bold; margin-bottom:6px;">📊 釣れやすさ早見表</div>
+                        <table style="width:100%; border-collapse:collapse; font-size:clamp(10px,2.8vw,12px);">
+                            <tr style="background:rgba(240,165,0,0.2);">
+                                <th style="color:#f0e68c; padding:6px 4px; text-align:left; border-bottom:2px solid #f0a500;">タイミング</th>
+                                <th style="color:#f0e68c; padding:6px 4px; text-align:center; border-bottom:2px solid #f0a500;">釣れやすさ</th>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
+                                <td style="color:#4fc3f7; padding:6px 4px; font-weight:bold;">上げ3分（干潮直後）</td>
+                                <td style="color:#ddd; padding:6px 4px; text-align:center;">★★★★★</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
+                                <td style="color:#4fc3f7; padding:6px 4px; font-weight:bold;">上げ7分（満潮手前）</td>
+                                <td style="color:#ddd; padding:6px 4px; text-align:center;">★★★★☆</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
+                                <td style="color:#81c784; padding:6px 4px; font-weight:bold;">下げ3分（満潮直後）</td>
+                                <td style="color:#ddd; padding:6px 4px; text-align:center;">★★★★☆</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
+                                <td style="color:#81c784; padding:6px 4px; font-weight:bold;">下げ7分（干潮手前）</td>
+                                <td style="color:#ddd; padding:6px 4px; text-align:center;">★★★☆☆</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
+                                <td style="color:#aaa; padding:6px 4px;">満潮・干潮ちょうど</td>
+                                <td style="color:#ddd; padding:6px 4px; text-align:center;">★☆☆☆☆</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ③ 季節や天候 -->
+    <div style="margin:0 12px 14px; background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; overflow:hidden;">
+        <div onclick="toggleSection('sec3')" style="background:linear-gradient(90deg,#2e7d32,#1b5e20); padding:18px 14px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;">
+            <div style="color:#fff; font-size:clamp(15px,4vw,18px); font-weight:bold;">🌤️ ③ 季節や天候</div>
+            <div id="sec3-btn" style="background:rgba(0,0,0,0.25); border:2px solid rgba(255,255,255,0.5); border-radius:8px; padding:4px 10px; color:#fff; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px; transition:all 0.2s;">
+                詳細 <span id="sec3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
+        </div>
+        <div id="sec3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <div style="padding:14px;">
+                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8; margin-bottom:12px;">
+                    魚ごとに「活動しやすい水温」や「釣りやすいシーズン」はある程度決まっているので、狙う魚がどの季節に釣りやすいのか、ベストシーズンを把握しておこう。また、天候も釣りやすさを左右する大事なポイント。
+                </p>
+                <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
+                        <tr style="background:rgba(240,165,0,0.2);">
+                            <th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">天候</th>
+                            <th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">釣れやすさ</th>
+                            <th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">ポイント</th>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
+                            <td style="color:#ddd; padding:7px 6px;">☁️ 曇り</td>
+                            <td style="color:#81c784; padding:7px 6px;">★★★★★</td>
+                            <td style="color:#ddd; padding:7px 6px;">光量少なく魚が浮きやすい</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
+                            <td style="color:#ddd; padding:7px 6px;">🌧️ 雨上がり</td>
+                            <td style="color:#81c784; padding:7px 6px;">★★★★☆</td>
+                            <td style="color:#ddd; padding:7px 6px;">濁りで警戒心が下がる</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
+                            <td style="color:#ddd; padding:7px 6px;">☀️ 晴天</td>
+                            <td style="color:#ffb74d; padding:7px 6px;">★★☆☆☆</td>
+                            <td style="color:#ddd; padding:7px 6px;">魚が底に潜りやすい</td>
+                        </tr>
+                        <tr>
+                            <td style="color:#ddd; padding:7px 6px;">💨 強風</td>
+                            <td style="color:#ef5350; padding:7px 6px;">★☆☆☆☆</td>
+                            <td style="color:#ddd; padding:7px 6px;">危険・釣りにくい</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ④ ナブラ -->
+    <div style="margin:0 12px 14px; background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; overflow:hidden;">
+        <div onclick="toggleSection('sec4')" style="background:linear-gradient(90deg,#6a1b9a,#4a148c); padding:18px 14px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;">
+            <div style="color:#fff; font-size:clamp(15px,4vw,18px); font-weight:bold;">🐟 ④ ナブラ</div>
+            <div id="sec4-btn" style="background:rgba(0,0,0,0.25); border:2px solid rgba(255,255,255,0.5); border-radius:8px; padding:4px 10px; color:#fff; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px; transition:all 0.2s;">
+                詳細 <span id="sec4-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
+        </div>
+        <div id="sec4" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <div style="padding:14px;">
+                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8; margin-bottom:12px;">
+                    ナブラとは大型の肉食魚に追われた小魚が海面に追い詰められ、逃げ惑う状態のこと。目の前には追いつめた小魚がいて食い気はMAXまで高まっているので、釣り人にとっては絶好のチャンス！タイミングを逃さないように釣ろう！
+                </p>
+
+                <!-- ナブラの写真 -->
+                <div style="border-radius:10px; overflow:hidden; margin-bottom:12px; border:2px solid rgba(240,165,0,0.4); box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="{{ url_for('static', filename='images/nabura.png') }}" alt="ナブラの様子" style="width:100%; display:block; object-fit:cover;">
+                    <div style="background:rgba(0,0,0,0.6); padding:6px 10px; color:#aaa; font-size:11px; text-align:center;">▲ ナブラ発生中。魚が海面に追い詰められている状態</div>
+                </div>
+                <div style="background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
+                    <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px); line-height:1.7;">
+                        💡 ナブラを見つけたらすぐにルアーを投げ込もう！鳥が海面をつついている場所はナブラのサインです。メタルジグやミノーが効果的！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ⑤ 潮目 -->
+    <div style="margin:0 12px 14px; background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; overflow:hidden;">
+        <div onclick="toggleSection('sec5')" style="background:linear-gradient(90deg,#00695c,#004d40); padding:18px 14px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;">
+            <div style="color:#fff; font-size:clamp(15px,4vw,18px); font-weight:bold;">🌀 ⑤ 潮目（しおめ）</div>
+            <div id="sec5-btn" style="background:rgba(0,0,0,0.25); border:2px solid rgba(255,255,255,0.5); border-radius:8px; padding:4px 10px; color:#fff; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px; transition:all 0.2s;">
+                詳細 <span id="sec5-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
+        </div>
+        <div id="sec5" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <div style="padding:14px;">
+                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8; margin-bottom:12px;">
+                    潮目付近では流れがぶつかり、波立つことがある。それによって海中に空気が取り込まれやすくなり、周辺よりも海中の酸素濃度が上がる。魚にとっての快適な環境に理解を深め、釣れるコツを掴んでいこう！
+                </p>
+
+                <!-- 潮目の写真 -->
+                <div style="border-radius:10px; overflow:hidden; margin-bottom:12px; border:2px solid rgba(240,165,0,0.4); box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="{{ url_for('static', filename='images/shiome.png') }}" alt="潮目の様子" style="width:100%; display:block; object-fit:cover;">
+                    <div style="background:rgba(0,0,0,0.6); padding:6px 10px; color:#aaa; font-size:11px; text-align:center;">▲ 海の色が変わる境目が潮目。ここに魚が集まる</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                    <div style="color:#f0e68c; font-size:13px; font-weight:bold; margin-bottom:8px;">潮目の見分け方</div>
+                    <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">
+                        🔵 海の色が変わる境目<br>
+                        🔵 泡や漂流物が集まっている場所<br>
+                        🔵 波の立ち方が周辺と違う場所<br>
+                        🔵 鳥が集まっている場所
+                    </p>
+                </div>
+                <div style="margin-top:10px; background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
+                    <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">
+                        💡 潮目はプランクトンや小魚が集まりやすく、そこを狙う大型魚も集まってくる一級ポイントです！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+/* ヘッダーをホバーしたとき少し明るく */
+[onclick]:hover { filter: brightness(1.1); }
+[onclick]:active { filter: brightness(0.9); }
+</style>
+
+<script>
+// 各セクションの展開状態を管理
+const openSections = {};
+
+function toggleSection(id) {
+    const content = document.getElementById(id);
+    const arrow   = document.getElementById(id + '-arrow');
+    const btn     = document.getElementById(id + '-btn');
+    const isOpen  = openSections[id];
+
+    if (isOpen) {
+        // 閉じる
+        content.style.maxHeight = '0';
+        arrow.style.transform = 'rotate(0deg)';
+        btn.textContent = '';
+        btn.innerHTML = '詳細 <span id="' + id + '-arrow" style="display:inline-block; transition:transform 0.3s; transform:rotate(0deg);">▼</span>';
+        openSections[id] = false;
+    } else {
+        // 開く（スクロール高さを取得して設定）
+        content.style.maxHeight = content.scrollHeight + 'px';
+        arrow.style.transform = 'rotate(180deg)';
+        btn.innerHTML = '閉じる <span id="' + id + '-arrow" style="display:inline-block; transition:transform 0.3s; transform:rotate(180deg);">▲</span>';
+        openSections[id] = true;
+    }
+}
+</script>
+
+{% endblock %}
