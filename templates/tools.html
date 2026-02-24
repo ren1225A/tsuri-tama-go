@@ -1011,17 +1011,19 @@ function showTab(tab) {
     activeBtn.style.background = 'linear-gradient(180deg,#f0a500,#c07800)';
     activeBtn.style.color = '#fff';
 }
-
+const _detailOpen = {};
 function toggleDetail(id) {
     const el = document.getElementById(id);
     const arrow = document.getElementById(id + '-arrow');
-    if (el.style.display === 'none') {
-        el.style.display = 'block';
-        arrow.textContent = '▼';
-    } else {
-        el.style.display = 'none';
-        arrow.textContent = '▶';
-    }
+    if (_detailOpen[id]) {
+    el.style.maxHeight = '0';
+    el.style.marginTop = '0';
+    _detailOpen[id] = false;
+} else {
+    el.style.maxHeight = '800px';
+    el.style.marginTop = '10px';
+    _detailOpen[id] = true;
+}
 }
 </script>
 
