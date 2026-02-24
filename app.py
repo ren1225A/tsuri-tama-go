@@ -41,24 +41,29 @@ app.register_blueprint(fish_log_bp)
 @app.route('/')
 def index():
     from models import FishLog
-    best_catch = FishLog.query.order_by(FishLog.size_cm.desc()).first()
+    if current_user.is_authenticated:
+        best_catch = FishLog.query.filter_by(user_id=current_user.id).order_by(FishLog.size_cm.desc()).first()
+    else:
+        best_catch = None
     bg_image = url_for('static', filename='images/background.png')
     return render_template('index.html', best_catch=best_catch, bg_image=bg_image)
-
-@app.route('/register')
-def register():
-    bg_image = url_for('static', filename='images/background.png')
-    return render_template('register.html', bg_image=bg_image)
 
 with app.app_context():
     db.create_all()
     print("DBを作成しました！")
     # ↓ ここに一時的に追加
-    if Quest.query.count() == 0:
-        q1 = Quest(title="初めての釣り", description="魚を1匹釣ろう", reward_points=10)
-        db.session.add(q1)
+    if Quest.query.count() <= 1:
+        Quest.query.delete()
         db.session.commit()
-        print("クエストを追加しました！")
+        quests = [
+            Quest(title="魚を1匹釣ろう", description="魚を1匹釣ろう", category="釣果", reward_points=10),
+            Quest(title="図鑑に登録しよう", description="計1匹 図鑑に登録する", category="釣果", reward_points=10),
+            Quest(title="詳細を見よう", description="詳細を1個見よう！", category="道具図鑑", reward_points=5),
+            Quest(title="詳細を3つ見よう", description="詳細を3つ見よう！", category="道具図鑑", reward_points=15),
+        ]
+        for q in quests:
+            db.session.add(q)
+        db.session.commit()
 if __name__ == '__main__':
     app.run(debug=True)
     
