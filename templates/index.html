@@ -166,10 +166,10 @@ function startGame() {
 
 // 一度スタートしたら次回アクセス時はスプラッシュをスキップ（任意）
 // もし毎回スプラッシュを出したい場合はこの部分を削除してOK
-// if (sessionStorage.getItem('splash_shown')) {
-//     document.getElementById('splash-screen').style.display = 'none';
-// } else {
-//     sessionStorage.setItem('splash_shown', 'true');
+if (sessionStorage.getItem('splash_shown') || new URLSearchParams(window.location.search).get('skip_splash')) {
+    document.getElementById('splash-screen').style.display = 'none';
+}
+sessionStorage.setItem('splash_shown', 'true');
 // }
 </script>
 <!-- ===== ここまで追加：スプラッシュ画面 ===== -->

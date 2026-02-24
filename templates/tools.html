@@ -1,11 +1,11 @@
-python app.py{% extends "base.html" %}
+{% extends "base.html" %}
 {% block bottom_nav %}{% endblock %}
 
 {% block content %}
 
 <div style="background: linear-gradient(180deg, #0a1628, #1a3a5c); min-height:100vh; padding-bottom:20px;">
     <div style="display:flex; align-items:center; gap:10px; padding:16px 12px; border-bottom:2px solid #f0a500;">
-        <a href="/" style="text-decoration:none;">
+        <a href="/?skip_splash=1" style="text-decoration:none;">
             <div style="background:linear-gradient(180deg,#3a6a9c,#1a3a6c); border:2px solid #f0a500; border-radius:10px; padding:8px 14px; color:#f0e68c; font-size:16px; font-weight:bold;">
                 ← 戻る
             </div>
@@ -78,10 +78,13 @@ python app.py{% extends "base.html" %}
         </div>
 
         <!-- タップで詳細 -->
-        <div onclick="toggleDetail('rod1')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod1-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod1')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <span style="color:#4fc3f7; font-size:13px; font-weight:bold;">詳細を見る</span>
+            <div id="rod1-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod1" style="display:none; margin-top:10px;">
+        <div id="rod1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -120,10 +123,13 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
         </div>
-        <div onclick="toggleDetail('rod2')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod2-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod2')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <span style="color:#4fc3f7; font-size:13px; font-weight:bold;">詳細を見る</span>
+            <div id="rod2-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod2" style="display:none; margin-top:10px;">
+        <div id="rod2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -162,10 +168,13 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初級</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
         </div>
-        <div onclick="toggleDetail('rod3')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod3-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod3')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <span style="color:#4fc3f7; font-size:13px; font-weight:bold;">詳細を見る</span>
+            <div id="rod3-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod3" style="display:none; margin-top:10px;">
+        <div id="rod3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -204,10 +213,13 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">超初心者◎</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：かんたん</span>
         </div>
-        <div onclick="toggleDetail('rod4')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod4-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod4')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <span style="color:#4fc3f7; font-size:13px; font-weight:bold;">詳細を見る</span>
+            <div id="rod4-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod4-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod4" style="display:none; margin-top:10px;">
+        <div id="rod4" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -246,10 +258,13 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
         </div>
-        <div onclick="toggleDetail('rod5')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod5-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod5')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <span style="color:#4fc3f7; font-size:13px; font-weight:bold;">詳細を見る</span>
+            <div id="rod5-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod5-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod5" style="display:none; margin-top:10px;">
+        <div id="rod5" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -280,7 +295,6 @@ python app.py{% extends "base.html" %}
     </div>
 
 </div>
-
     <!-- 他タブ（準備中） -->
     <!-- リールコンテンツ -->
     <div id="content-reel" style="display:none; padding:0 12px;">
