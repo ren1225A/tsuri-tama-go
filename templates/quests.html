@@ -8,6 +8,7 @@
         <h2>{{ quest.title }}</h2>
         <p>{{ quest.description }}</p>
         <p>報酬：{{ quest.reward_points }} ポイント</p>
+        <p>現在のポイント：{{ current_user.total_points }}</p>
 
         {% if quest.id in completed_ids %}
             <p style="color: green; font-weight: bold;">✅ 達成済み！</p>
