@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% block bottom_nav %}{% endblock %}
+
+{% block content %}
+
+<div style="background: linear-gradient(180deg, #0a1628, #1a3a5c); min-height:100vh; padding-bottom:30px;">
+
+    <!-- ヘッダー -->
+    <div style="display:flex; align-items:center; gap:10px; padding:16px 12px; border-bottom:2px solid #f0a500;">
+        <a href="/" style="text-decoration:none;">
+            <div style="background:linear-gradient(180deg,#3a6a9c,#1a3a6c); border:2px solid #f0a500; border-radius:10px; padding:8px 14px; color:#f0e68c; font-size:16px; font-weight:bold;">
+                ← 戻る
+            </div>
+        </a>
+        <div style="flex:1; text-align:center; background:linear-gradient(180deg,#2a6aad,#1a4a8c); border:2px solid #f0a500; border-radius:8px; padding:10px; color:#f0e68c; font-size:clamp(18px,5vw,24px); font-weight:bold; text-shadow:2px 2px 4px #000;">
+            📍 場所
+        </div>
+    </div>
+
+    <!-- セクションタイトル -->
+    <div style="margin:16px 12px 12px;">
+        <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:12px 16px;">
+            <div style="color:#f0e68c; font-size:clamp(16px,5vw,20px); font-weight:bold; text-align:center; letter-spacing:0.1em;">
+                🏖️ 今治の堤防
+            </div>
+            <p style="color:#aaa; font-size:11px; text-align:center; margin-top:5px;">
+                タップするとGoogleマップが開きます
+            </p>
+        </div>
+    </div>
+
+    <!-- 2列グリッド -->
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px; padding:0 12px;">
+
+        <!-- ① 富田新港 -->
+        <div class="spot-card" onclick="openGmap('富田新港 今治市')">
+            <div class="spot-img-wrap">
+                <img src="{{ url_for('static', filename='images/spots/spot_tomita.jpg') }}"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     class="spot-photo" alt="富田新港">
+                <div class="spot-placeholder" style="display:none;">
+                    <span style="font-size:clamp(24px,7vw,36px);">🏭</span>
+                    <span class="placeholder-label">写真準備中</span>
+                </div>
+                <div class="spot-badge beginner">初心者◎</div>
+            </div>
+            <div class="spot-name-bar">富田新港</div>
+        </div>
+
+        <!-- ② 大浜漁港 -->
+        <div class="spot-card" onclick="openGmap('大浜漁港 今治市')">
+            <div class="spot-img-wrap">
+                <img src="{{ url_for('static', filename='images/spots/spot_ohama.jpg') }}"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     class="spot-photo" alt="大浜漁港">
+                <div class="spot-placeholder" style="display:none;">
+                    <span style="font-size:clamp(24px,7vw,36px);">⚓</span>
+                    <span class="placeholder-label">写真準備中</span>
+                </div>
+                <div class="spot-badge beginner">初心者◎</div>
+            </div>
+            <div class="spot-name-bar">大浜漁港</div>
+        </div>
+
+        <!-- ③ 大角海浜公園 -->
+        <div class="spot-card" onclick="openGmap('大角海浜公園 今治市 波方町')">
+            <div class="spot-img-wrap">
+                <img src="{{ url_for('static', filename='images/spots/spot_osumi.jpg') }}"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     class="spot-photo" alt="大角海浜公園">
+                <div class="spot-placeholder" style="display:none;">
+                    <span style="font-size:clamp(24px,7vw,36px);">🌊</span>
+                    <span class="placeholder-label">写真準備中</span>
+                </div>
+                <div class="spot-badge mid">中級向け</div>
+            </div>
+            <div class="spot-name-bar">大角海浜公園</div>
+        </div>
+
+        <!-- ④ 菊間港 -->
+        <div class="spot-card" onclick="openGmap('菊間港 今治市 菊間町')">
+            <div class="spot-img-wrap">
+                <img src="{{ url_for('static', filename='images/spots/spot_kikuma.jpg') }}"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     class="spot-photo" alt="菊間港">
+                <div class="spot-placeholder" style="display:none;">
+                    <span style="font-size:clamp(24px,7vw,36px);">🚢</span>
+                    <span class="placeholder-label">写真準備中</span>
+                </div>
+                <div class="spot-badge beginner">初心者◎</div>
+            </div>
+            <div class="spot-name-bar">菊間港</div>
+        </div>
+
+        <!-- ⑤ 小部漁港 -->
+        <div class="spot-card" onclick="openGmap('小部漁港 今治市')">
+            <div class="spot-img-wrap">
+                <img src="{{ url_for('static', filename='images/spots/spot_kobe.jpg') }}"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     class="spot-photo" alt="小部漁港">
+                <div class="spot-placeholder" style="display:none;">
+                    <span style="font-size:clamp(24px,7vw,36px);">🎣</span>
+                    <span class="placeholder-label">写真準備中</span>
+                </div>
+                <div class="spot-badge mid">中級向け</div>
+            </div>
+            <div class="spot-name-bar">小部漁港</div>
+        </div>
+
+        <!-- ⑥ 今治港 -->
+        <div class="spot-card" onclick="openGmap('今治港 愛媛県今治市')">
+            <div class="spot-img-wrap">
+                <img src="{{ url_for('static', filename='images/spots/spot_imabari.jpg') }}"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     class="spot-photo" alt="今治港">
+                <div class="spot-placeholder" style="display:none;">
+                    <span style="font-size:clamp(24px,7vw,36px);">🏙️</span>
+                    <span class="placeholder-label">写真準備中</span>
+                </div>
+                <div class="spot-badge mid">中級向け</div>
+            </div>
+            <div class="spot-name-bar">今治港</div>
+        </div>
+
+    </div>
+
+    <!-- 注意書き -->
+    <div style="margin:14px 12px 0; background:rgba(240,165,0,0.1); border:1px solid rgba(240,165,0,0.4); border-radius:10px; padding:10px 14px;">
+        <p style="color:#f0e68c; font-size:11px; line-height:1.7; margin:0;">
+            💡 釣行前に現地のルール・立入禁止区域を必ず確認してください。
+        </p>
+    </div>
+
+</div>
+
+<style>
+/* カード */
+.spot-card {
+    background: linear-gradient(180deg, #0d2540, #051020);
+    border: 2px solid #f0a500;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow:
+        0 5px 0 rgba(0,0,0,0.35),
+        0 7px 14px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    transform: translateY(0);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.spot-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 rgba(0,0,0,0.3), 0 12px 20px rgba(0,0,0,0.3);
+}
+.spot-card:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.35), inset 0 2px 4px rgba(0,0,0,0.2);
+    filter: brightness(0.88);
+}
+
+/* 画像エリア */
+.spot-img-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a3a5c, #0a2040);
+}
+.spot-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 写真がないときのプレースホルダー */
+.spot-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: linear-gradient(135deg, #1a3a5c, #0a2040);
+}
+.placeholder-label {
+    color: #667;
+    font-size: clamp(7px, 2vw, 9px);
+}
+
+/* バッジ */
+.spot-badge {
+    position: absolute;
+    top: 6px; left: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+.spot-badge.beginner {
+    background: rgba(129,199,132,0.3);
+    border: 1px solid #81c784;
+    color: #81c784;
+}
+.spot-badge.mid {
+    background: rgba(255,183,77,0.3);
+    border: 1px solid #ffb74d;
+    color: #ffb74d;
+}
+
+/* 場所名バー */
+.spot-name-bar {
+    background: linear-gradient(180deg, rgba(240,165,0,0.12), transparent);
+    border-top: 1px solid rgba(240,165,0,0.4);
+    color: #f0e68c;
+    font-size: clamp(12px, 3.5vw, 16px);
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+
+<script>
+function openGmap(query) {
+    const url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+    window.open(url, '_blank');
+}
+</script>
+
+{% endblock %}

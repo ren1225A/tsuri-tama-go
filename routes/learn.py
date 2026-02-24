@@ -13,3 +13,7 @@ def tools():
 @learn_bp.route('/conditions')
 def conditions():
     return render_template('conditions.html')
+
+@learn_bp.route('/spots')
+def spots():
+    return render_template('spots.html')
