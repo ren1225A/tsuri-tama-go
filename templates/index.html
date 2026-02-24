@@ -219,12 +219,13 @@ sessionStorage.setItem('splash_shown', 'true');
     <div class="catch-log-title">🏆 ～ ベストサイズ ～ 🏆</div>
     {% if best_catch %}
     <div class="catch-card">
-        <div class="catch-photo">🐟</div>
-        <div class="catch-info">
-            <p>魚種：{{ best_catch.fish.name }}</p>
-            <p>大きさ：{{ best_catch.size_cm }}cm</p>
-            <p>ポイント：⭐{{ best_catch.earned_points }}pt</p>
-        </div>
+        <div class="catch-photo">
+    {% if best_catch and best_catch.photo_data %}
+    <img src="{{ best_catch.photo_data }}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+    {% else %}
+    🐟
+    {% endif %}
+</div>
     </div>
     {% else %}
     <div class="catch-empty">
@@ -237,7 +238,7 @@ sessionStorage.setItem('splash_shown', 'true');
 
 <div class="section-title">🏅 クエスト・挑戦 🏅</div>
 <div class="menu-grid">
-    <a href="/learn/fish" class="menu-item">
+    <a href="/fish" class="menu-item">
         <img src="{{ url_for('static', filename='images/fish_vintage.png') }}" alt="魚図鑑">
         <div class="menu-label">魚図鑑</div>
     </a>

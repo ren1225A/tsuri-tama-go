@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+/* ===== 魚図鑑 共通スタイル ===== */
+.fish-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0a1628 0%, #0d2137 60%, #0a1628 100%);
+    padding-bottom: 100px;
+}
+
+/* ヘッダー */
+.fish-header {
+    background: linear-gradient(135deg, #1a3a5c, #0d2137);
+    border-bottom: 2px solid #1e5a8a;
+    padding: 16px;
+    text-align: center;
+    position: relative;
+    top: 0;
+    z-index: 10;
+}
+.fish-header-title {
+    font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #7dd3fc;
+    letter-spacing: 2px;
+}
+
+/* ベストサイズカード */
+.best-card {
+    margin: 16px;
+    background: linear-gradient(135deg, rgba(26,58,92,0.6), rgba(13,33,55,0.6));
+    border: 1px solid #1e5a8a;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+.best-label {
+    font-size: 13px;
+    color: #7dd3fc;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+.best-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    border: 3px solid #fbbf24;
+    background: #0d2137;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+.best-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.best-name {
+    font-size: 20px;
+    font-weight: 900;
+    color: #fbbf24;
+}
+.best-size {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    margin-top: 4px;
+}
+
+/* セクションタイトル */
+.fish-section-title {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #7dd3fc;
+    padding: 0 16px;
+    margin: 20px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 登録ボタン */
+.register-btn {
+    display: block;
+    margin: 0 16px 16px;
+    padding: 14px;
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #0369a1;
+    transition: all 0.15s ease;
+}
+.register-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #0369a1;
+}
+
+/* 魚リスト */
+.fish-list {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.fish-card {
+    background: rgba(26,58,92,0.5);
+    border: 1px solid rgba(30,90,138,0.5);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+}
+.fish-card:hover {
+    background: rgba(26,58,92,0.8);
+    border-color: #1e5a8a;
+}
+.fish-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #0d2137;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+.fish-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.fish-card-info {
+    flex: 1;
+    min-width: 0;
+}
+.fish-card-name {
+    font-weight: 900;
+    font-size: 16px;
+    color: #e2f4ff;
+    margin-bottom: 2px;
+}
+.fish-card-scientific {
+    font-size: 11px;
+    color: #4a7fa5;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.fish-card-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.fish-size {
+    font-size: 12px;
+    color: #7dd3fc;
+}
+.rarity-stars { font-size: 11px; }
+.danger-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+.fish-card-arrow {
+    color: #4a7fa5;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/* 空状態 */
+.fish-empty {
+    text-align: center;
+    color: #4a7fa5;
+    padding: 40px 20px;
+    line-height: 2;
+    font-size: 14px;
+}
+
+/* フラッシュメッセージ */
+.flash-msg {
+    margin: 12px 16px 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+.flash-success { background: #065f4633; color: #4ade80; border: 1px solid #4ade8055; }
+.flash-error   { background: #7f1d1d33; color: #f87171; border: 1px solid #f8717155; }
+.flash-info    { background: #1e3a5f33; color: #7dd3fc; border: 1px solid #7dd3fc55; }
+</style>
+
+<div class="fish-page">
+
+    <!-- ヘッダー -->
+<div class="detail-header">
+    <a href="{{ url_for('index') }}" style="text-decoration:none;">
+        <div style="background:linear-gradient(180deg,#3a6a9c,#1a3a6c); border:2px solid #f0a500; border-radius:10px; padding:8px 14px; color:#f0e68c; font-size:16px; font-weight:bold;">
+            ← 戻る
+        </div>
+    </a>
+    <div class="detail-header-title">📖 魚図鑑</div>
+</div>
+    <!-- フラッシュメッセージ -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+    <div class="flash-msg flash-{{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endwith %}
+
+    <!-- ベストサイズ -->
+    <div class="best-card">
+        <div class="best-label">🏆 〜 ベストサイズ 〜 🏆</div>
+        {% if best %}
+        {% set rarity_colors = {1: '#9ca3af', 2: '#4ade80', 3: '#60a5fa', 4: '#c084fc', 5: '#fbbf24'} %}
+        <div class="best-photo" style="border-color: {{ rarity_colors.get(best.rarity_level, '#fbbf24') }};">
+            {% if best.photo_data %}
+            <img src="{{ best.photo_data }}" alt="{{ best.fish_name }}">
+            {% else %}
+            🐟
+            {% endif %}
+        </div>
+        <div class="best-name">{{ best.fish_name }}</div>
+        <div class="best-size">{{ best.size_cm }} cm</div>
+        <div style="margin-top:8px; font-size:12px; color:#7dd3fc;">
+            レア度：<span style="color:{{ rarity_colors.get(best.rarity_level, '#fbbf24') }};">
+                {{ '★' * best.rarity_level }}{{ '☆' * (5 - best.rarity_level) }}
+            </span>
+        </div>
+        <div style="font-size:11px; color:#4a7fa5; margin-top:4px;">
+            {{ best.caught_at.strftime('%Y年%m月%d日') }} 登録
+        </div>
+        {% else %}
+        <div style="color:#4a7fa5; margin-bottom:8px;">〜 まだ釣果がありません 〜</div>
+        <div style="font-size:13px; color:#4a7fa5;">🎣 釣りに行って<br>記録をつけよう！</div>
+        {% endif %}
+    </div>
+
+    <!-- 登録ボタン -->
+    <a href="{{ url_for('fish_log.register') }}" class="register-btn">
+        ＋ 釣れた魚を登録する
+    </a>
+
+    <!-- 魚一覧 -->
+    <div class="fish-section-title">🐟 登録した魚 （{{ fishes | length }}匹）</div>
+
+    {% set danger_labels = {1: ('安全', '#4ade80'), 2: ('低リスク', '#a3e635'), 3: ('注意', '#facc15'), 4: ('危険', '#fb923c'), 5: ('非常に危険', '#f87171')} %}
+    {% set rarity_colors = {1: '#9ca3af', 2: '#4ade80', 3: '#60a5fa', 4: '#c084fc', 5: '#fbbf24'} %}
+
+    <div class="fish-list">
+        {% if fishes %}
+        {% for fish in fishes %}
+        <a href="{{ url_for('fish_log.detail', fish_id=fish.id) }}" class="fish-card">
+            <div class="fish-thumb" style="border: 2px solid {{ rarity_colors.get(fish.rarity_level, '#4a7fa5') }};">
+                {% if fish.photo_data %}
+                <img src="{{ fish.photo_data }}" alt="{{ fish.fish_name }}">
+                {% else %}
+                🐟
+                {% endif %}
+            </div>
+            <div class="fish-card-info">
+                <div class="fish-card-name">{{ fish.fish_name }}</div>
+                <div class="fish-card-scientific">{{ fish.scientific_name or '' }}</div>
+                <div class="fish-card-meta">
+                    <span class="fish-size">📏 {{ fish.size_cm }}cm</span>
+                    {% if fish.rarity_level %}
+                    <span class="rarity-stars" style="color:{{ rarity_colors.get(fish.rarity_level, '#9ca3af') }};">
+                        {{ '★' * fish.rarity_level }}{{ '☆' * (5 - fish.rarity_level) }}
+                    </span>
+                    {% endif %}
+                    {% if fish.danger_level %}
+                    {% set dlabel, dcolor = danger_labels.get(fish.danger_level, ('—', '#9ca3af')) %}
+                    <span class="danger-badge"
+                          style="background:{{ dcolor }}33; color:{{ dcolor }}; border:1px solid {{ dcolor }}55;">
+                        {{ dlabel }}
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="fish-card-arrow">›</div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <div class="fish-empty">
+            まだ魚が登録されていません<br>
+            <span style="font-size:12px;">釣れた魚を登録してみよう！</span>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
