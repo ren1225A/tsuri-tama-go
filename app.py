@@ -58,4 +58,21 @@ with app.app_context():
         print("クエストを追加しました！")
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.route("/badges")
+@login_required
+def badge_list():
+    user = current_user
+
+    all_badges = Badge.query.all()
+    user_badges = UserBadge.query.filter_by(user_id=user.id).all()
+
+    acquired_badge_ids = [ub.badge_id for ub in user_badges]
+
+    return render_template(
+        "badges.html",
+        badges=all_badges,
+        acquired_badge_ids=acquired_badge_ids,
+        total_points=user.total_points
+    )
     

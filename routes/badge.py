@@ -48,7 +48,7 @@ def check_and_award_badges(user):
             new_badge = UserBadge(
                 user_id=user.id,
                 badge_id=badge.id,
-                earned_at=datetime.utcnow()
+                acquired_at=datetime.utcnow()   # ← ★ここ修正
             )
             db.session.add(new_badge)
             newly_earned.append(badge)
@@ -66,18 +66,22 @@ def check_and_award_badges(user):
 @login_required
 def badge_list():
 
+    # バッジ付与チェック
     newly_earned = check_and_award_badges(current_user)
 
     for badge in newly_earned:
         flash(f'🎉 新しいバッジ「{badge.name}」を獲得しました！', 'success')
 
     all_badges = Badge.query.all()
+
     earned_ids = {
-        ub.badge_id for ub in UserBadge.query.filter_by(user_id=current_user.id).all()
+        ub.badge_id
+        for ub in UserBadge.query.filter_by(user_id=current_user.id).all()
     }
 
     return render_template(
         'badges.html',
         badges=all_badges,
-        earned_ids=earned_ids
+        acquired_badge_ids=earned_ids,   # ← HTMLと名前を統一
+        total_points=current_user.total_points  # ← ★追加
     )

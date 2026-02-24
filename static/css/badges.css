@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f8fb;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+.points {
+    font-size: 20px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.badge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.badge-item {
+    text-align: center;
+}
+
+.badge-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.acquired {
+    border: 4px solid gold;
+}
+
+.locked {
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+.badge-name {
+    margin-top: 8px;
+    font-size: 14px;
+}
