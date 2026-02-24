@@ -17,3 +17,7 @@ def conditions():
 @learn_bp.route('/spots')
 def spots():
     return render_template('spots.html')
+
+@learn_bp.route('/rules')
+def rules():
+    return render_template('rules.html')
