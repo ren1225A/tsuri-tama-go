@@ -45,53 +45,28 @@
 
 
 <!-- ★ここから修正 -->
-<form method="POST" action="{{ url_for('auth.register') }}"></form>
-    <!-- 入力欄 -->
-    <input type="text" name="username" placeholder="ニックネーム" maxlength="10" required
-        style="
-            width:100%;
-            padding:14px;
-            border-radius:10px;
-            border:2px solid #f0a500;
-            background:#0a1628;
-            color:#fff;
-            font-size:clamp(15px, 4vw, 18px);
-            text-align:center;
-            margin-bottom:16px;
-            outline:none;
-        ">
+<form method="POST" action="/auth/register">
 
-    <input type="password" name="password" placeholder="パスワード" required
-        style="
-            width:100%;
-            padding:14px;
-            border-radius:10px;
-            border:2px solid #f0a500;
-            background:#0a1628;
-            color:#fff;
-            font-size:clamp(15px, 4vw, 18px);
-            text-align:center;
-            margin-bottom:16px;
-            outline:none;
-        ">
+    <div>
+        <input type="text"
+               name="username"
+               placeholder="ニックネーム"
+               maxlength="10"
+               required>
+    </div>
 
-    <!-- ボタン -->
-    <button type="submit"
-        style="
-            width:100%;
-            padding:14px;
-            background:linear-gradient(180deg,#f0a500,#c07800);
-            border:none;
-            border-radius:10px;
-            color:#fff;
-            font-size:clamp(15px, 4vw, 18px);
-            font-weight:bold;
-            cursor:pointer;
-            box-shadow:0 4px 12px rgba(0,0,0,0.4);
-            letter-spacing:1px;
-        ">
-        はじめる！🐟
-    </button>
+    <div>
+        <input type="password"
+               name="password"
+               placeholder="パスワード"
+               required>
+    </div>
+
+    <div>
+        <button type="submit">
+            はじめる！🐟
+        </button>
+    </div>
 
 </form>
 <!-- ★ここまで修正 -->

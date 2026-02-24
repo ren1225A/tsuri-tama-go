@@ -11,6 +11,13 @@ def login():
         password = request.form['password']
 
         user = User.query.filter_by(username=username).first()
+        # 🔥 ここから追加
+        print("入力username:", username)
+        print("入力password:", password)
+        print("DB user:", user)
+        if user:
+            print("DB password:", user.password)
+    # 🔥 ここまで追加
 
         if user and user.password == password:
             login_user(user)

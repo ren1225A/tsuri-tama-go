@@ -6,24 +6,33 @@ from routes.badge import check_and_award_badges
 
 quest_bp = Blueprint("quest", __name__)
 
+
+# ===============================
+# 🎯 クエスト一覧表示（自動進捗対応）
+# ===============================
 @quest_bp.route("/quests")
 @quest_bp.route("/quests/")
+@login_required
 def show_quests():
-    quests = Quest.query.all()
-    
-    if current_user.is_authenticated:
-        completed_ids = {
-            p.quest_id for p in current_user.quests if p.status == '完了'
-        }
-    else:
-        completed_ids = set()
-    
-    return render_template("quests.html", quests=quests, completed_ids=completed_ids)
+
+    # ユーザーの進捗情報を取得
+    user_quests = UserQuestProgress.query.filter_by(
+        user_id=current_user.id
+    ).all()
+
+    return render_template(
+        "quests.html",
+        user_quests=user_quests
+    )
 
 
+# ===============================
+# 🔘 手動達成（既存機能保持）
+# ===============================
 @quest_bp.route("/quests/complete/<int:quest_id>")
 @login_required
 def complete_quest(quest_id):
+
     quest = Quest.query.get_or_404(quest_id)
 
     progress = UserQuestProgress.query.filter_by(
@@ -40,28 +49,26 @@ def complete_quest(quest_id):
             completed_at=datetime.utcnow()
         )
         db.session.add(progress)
-        current_user.total_points = (current_user.total_points or 0) + quest.reward_points
-        db.session.commit()
-        check_and_award_badges(current_user)
 
-    if progress and progress.status == '完了':
-        return redirect(url_for("quest.show_quests"))   
-
-    elif progress.status != '完了':
+    if progress.status != '完了':
         progress.status = '完了'
         progress.progress_percent = 100
         progress.completed_at = datetime.utcnow()
         current_user.total_points += quest.reward_points
-        db.session.commit()
-        check_and_award_badges(current_user)
-        db.session.commit()  # ← 追加すると安全
+
+    db.session.commit()
+    check_and_award_badges(current_user)
 
     return redirect(url_for("quest.show_quests"))
 
 
+# ===============================
+# 🔄 クエストリセット（既存保持）
+# ===============================
 @quest_bp.route("/quests/reset/<int:quest_id>")
 @login_required
 def reset_quest(quest_id):
+
     progress = UserQuestProgress.query.filter_by(
         user_id=current_user.id,
         quest_id=quest_id
@@ -69,13 +76,16 @@ def reset_quest(quest_id):
 
     if progress:
         quest = Quest.query.get_or_404(quest_id)
+
         current_user.total_points -= quest.reward_points
         if current_user.total_points < 0:
             current_user.total_points = 0
 
         progress.status = '未着手'
         progress.progress_percent = 0
+        progress.current_total_size = 0  # 🔥 サイズ型用に追加
         progress.completed_at = None
+
         db.session.commit()
 
     return redirect(url_for("quest.show_quests"))

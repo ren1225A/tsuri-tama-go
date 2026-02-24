@@ -2,20 +2,12 @@
 
 <form method="POST">
 
-    <label>魚種</label><br>
-    <select name="fish_id" required>
-        {% for fish in fishes %}
-            <option value="{{ fish.id }}">{{ fish.name }}</option>
-        {% endfor %}
-    </select>
+    <label>魚の名前</label><br>
+    <input type="text" name="fish_name" required>
     <br><br>
 
     <label>釣り場</label><br>
-    <select name="spot_id" required>
-        {% for spot in spots %}
-            <option value="{{ spot.id }}">{{ spot.name }}</option>
-        {% endfor %}
-    </select>
+    <input type="text" name="spot_name" required>
     <br><br>
 
     <label>サイズ（cm）</label><br>

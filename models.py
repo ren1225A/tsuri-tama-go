@@ -21,15 +21,16 @@ class User(db.Model, UserMixin):
     badges = db.relationship('UserBadge', back_populates='user', lazy=True)
     catches = db.relationship('Catch', backref='user', lazy=True)
     # 学習既読フラグ
-has_read_tools = db.Column(db.Boolean, default=False)
-has_read_conditions = db.Column(db.Boolean, default=False)
-has_read_spots = db.Column(db.Boolean, default=False)
+    has_read_tools = db.Column(db.Boolean, default=False)
+    has_read_conditions = db.Column(db.Boolean, default=False)
+    has_read_spots = db.Column(db.Boolean, default=False)
 class Quest(db.Model):
     __tablename__ = 'quests'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text, nullable=False)
     category = db.Column(db.Text)
     description = db.Column(db.Text)
+    target_total_size = db.Column(db.Float, default=30)  # ← ここ追加
     reward_points = db.Column(db.Integer, default=0)
     badge_id = db.Column(db.Integer, db.ForeignKey('badges.id'))
     spot_id = db.Column(db.Integer, db.ForeignKey('fishing_spots.id'))
@@ -37,14 +38,19 @@ class Quest(db.Model):
     
 
     badge = db.relationship('Badge', backref='quests', lazy=True)
+    
 class UserQuestProgress(db.Model):
     __tablename__ = 'user_quest_progress'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     quest_id = db.Column(db.Integer, db.ForeignKey('quests.id'))
     status = db.Column(db.Text, default='未着手')
-    progress_percent = db.Column(db.Integer, default=0)
+
+
+    current_total_size = db.Column(db.Float, default=0)
     completed_at = db.Column(db.DateTime)
+
+    quest = db.relationship('Quest')
 
 class Badge(db.Model):
     __tablename__ = 'badges'
@@ -102,5 +108,3 @@ class Catch(db.Model):
     size_cm = db.Column(db.Float)
     earned_points = db.Column(db.Integer, default=0)
 
-    fish = db.relationship('FishSpecies', backref='catches', lazy=True)
-    spot = db.relationship('FishingSpot', backref='catches', lazy=True)
