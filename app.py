@@ -40,7 +40,8 @@ app.register_blueprint(fish_log_bp)
 
 @app.route('/')
 def index():
-    best_catch = None
+    from models import FishLog
+    best_catch = FishLog.query.order_by(FishLog.size_cm.desc()).first()
     bg_image = url_for('static', filename='images/background.png')
     return render_template('index.html', best_catch=best_catch, bg_image=bg_image)
 
