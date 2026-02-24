@@ -96,8 +96,9 @@ class Catch(db.Model):
     __tablename__ = 'catches'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    fish_id = db.Column(db.Integer, db.ForeignKey('fish_species.id'))
-    spot_id = db.Column(db.Integer, db.ForeignKey('fishing_spots.id'))
+    # 一旦テキスト入力用にする
+    fish_name = db.Column(db.String(100))
+    spot_name = db.Column(db.String(100))
     size_cm = db.Column(db.Float)
     earned_points = db.Column(db.Integer, default=0)
 
