@@ -1,11 +1,11 @@
-python app.py{% extends "base.html" %}
+{% extends "base.html" %}
 {% block bottom_nav %}{% endblock %}
 
 {% block content %}
 
 <div style="background: linear-gradient(180deg, #0a1628, #1a3a5c); min-height:100vh; padding-bottom:20px;">
     <div style="display:flex; align-items:center; gap:10px; padding:16px 12px; border-bottom:2px solid #f0a500;">
-        <a href="/" style="text-decoration:none;">
+        <a href="/?skip_splash=1" style="text-decoration:none;">
             <div style="background:linear-gradient(180deg,#3a6a9c,#1a3a6c); border:2px solid #f0a500; border-radius:10px; padding:8px 14px; color:#f0e68c; font-size:16px; font-weight:bold;">
                 ← 戻る
             </div>
@@ -78,10 +78,12 @@ python app.py{% extends "base.html" %}
         </div>
 
         <!-- タップで詳細 -->
-        <div onclick="toggleDetail('rod1')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod1-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod1')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <div id="rod1-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod1" style="display:none; margin-top:10px;">
+        <div id="rod1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -120,10 +122,12 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
         </div>
-        <div onclick="toggleDetail('rod2')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod2-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod2')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <div id="rod2-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod2" style="display:none; margin-top:10px;">
+        <div id="rod2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -162,10 +166,12 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初級</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
         </div>
-        <div onclick="toggleDetail('rod3')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod3-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod3')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <div id="rod3-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod3" style="display:none; margin-top:10px;">
+        <div id="rod3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -204,10 +210,12 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">超初心者◎</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：かんたん</span>
         </div>
-        <div onclick="toggleDetail('rod4')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod4-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod4')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <div id="rod4-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod4-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod4" style="display:none; margin-top:10px;">
+        <div id="rod4" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -246,10 +254,12 @@ python app.py{% extends "base.html" %}
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
             <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">使いやすさ：ふつう</span>
         </div>
-        <div onclick="toggleDetail('rod5')" style="display:flex; align-items:center; gap:6px; color:#4fc3f7; font-size:13px; cursor:pointer; padding:6px 0; border-top:1px solid rgba(240,165,0,0.3);">
-            <span id="rod5-arrow">▶</span> タップで詳細
+        <div onclick="toggleDetail('rod5')" style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(240,165,0,0.3); cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+            <div id="rod5-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                詳細 <span id="rod5-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+            </div>
         </div>
-        <div id="rod5" style="display:none; margin-top:10px;">
+        <div id="rod5" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
             <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
                 <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
                     <td style="color:#f0a500; padding:6px 8px 6px 0; white-space:nowrap; font-weight:bold; width:80px;">レベル</td>
@@ -280,710 +290,428 @@ python app.py{% extends "base.html" %}
     </div>
 
 </div>
-
     <!-- 他タブ（準備中） -->
-    <!-- リールコンテンツ -->
+   <!-- リールコンテンツ -->
     <div id="content-reel" style="display:none; padding:0 12px;">
-
-        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">
-            → リール ←
-        </div>
+        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">→ リール ←</div>
 
         <!-- ① リールとは -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:10px;">① リールとは</div>
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-                <div style="font-size:48px; flex-shrink:0;">⚙️</div>
-                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">
-                    リールとはロッドに取り付けてラインを巻き取る道具です。キャスト（投げる）・巻き取り・ドラグ調整など釣りの基本動作を担います。リール選びで釣りのしやすさが大きく変わります！
-                </p>
+            <div onclick="toggleDetail('reel1')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">① リールとは</div>
+                <div id="reel1-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                    詳細 <span id="reel1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+                </div>
+            </div>
+            <div id="reel1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px; display:flex; gap:12px; align-items:flex-start;">
+                    <div style="font-size:48px; flex-shrink:0;">⚙️</div>
+                    <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">リールとはロッドに取り付けてラインを巻き取る道具です。キャスト（投げる）・巻き取り・ドラグ調整など釣りの基本動作を担います。リール選びで釣りのしやすさが大きく変わります！</p>
+                </div>
             </div>
         </div>
 
         <!-- ② リールの種類 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">② リールの種類</div>
-
-            <!-- スピニングリール -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🔵 スピニングリール</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">
-                    初心者に最もおすすめ。ロッドの下側に取り付けます。軽いルアーも投げやすく扱いやすいのが特徴。アジング・エギング・シーバス・サビキなど幅広い釣りに対応。
-                </p>
+            <div onclick="toggleDetail('reel2')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">② リールの種類</div>
+                <div id="reel2-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                    詳細 <span id="reel2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+                </div>
             </div>
-
-            <!-- ベイトリール -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🔴 ベイトリール</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">
-                    中〜上級者向け。ロッドの上側に取り付けます。重いルアーを正確に投げられますが、バックラッシュ（糸絡み）が起きやすいため慣れが必要。バス釣りやショアジギングで活躍。
-                </p>
+            <div id="reel2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
+                        <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🔵 スピニングリール</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">初心者に最もおすすめ。ロッドの下側に取り付けます。軽いルアーも投げやすく扱いやすいのが特徴。アジング・エギング・シーバス・サビキなど幅広い釣りに対応。</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                        <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🔴 ベイトリール</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">中〜上級者向け。ロッドの上側に取り付けます。重いルアーを正確に投げられますが、バックラッシュ（糸絡み）が起きやすいため慣れが必要。バス釣りやショアジギングで活躍。</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- ③ ロッドとの組み合わせ -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">③ ロッドとの組み合わせ</div>
-
-            <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
-                <tr style="background:rgba(240,165,0,0.2);">
-                    <th style="color:#f0e68c; padding:8px 6px; text-align:left; border-bottom:2px solid #f0a500;">ロッド</th>
-                    <th style="color:#f0e68c; padding:8px 6px; text-align:left; border-bottom:2px solid #f0a500;">リール</th>
-                    <th style="color:#f0e68c; padding:8px 6px; text-align:left; border-bottom:2px solid #f0a500;">番手</th>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:8px 6px;">アジングロッド</td>
-                    <td style="color:#ddd; padding:8px 6px;">スピニング</td>
-                    <td style="color:#ddd; padding:8px 6px;">1000〜2000番</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:8px 6px;">エギングロッド</td>
-                    <td style="color:#ddd; padding:8px 6px;">スピニング</td>
-                    <td style="color:#ddd; padding:8px 6px;">2500〜3000番</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:8px 6px;">シーバスロッド</td>
-                    <td style="color:#ddd; padding:8px 6px;">スピニング</td>
-                    <td style="color:#ddd; padding:8px 6px;">3000番</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:8px 6px;">サビキロッド</td>
-                    <td style="color:#ddd; padding:8px 6px;">スピニング</td>
-                    <td style="color:#ddd; padding:8px 6px;">2000〜3000番</td>
-                </tr>
-                <tr>
-                    <td style="color:#ddd; padding:8px 6px;">ライトショアジギングロッド</td>
-                    <td style="color:#ddd; padding:8px 6px;">スピニング</td>
-                    <td style="color:#ddd; padding:8px 6px;">4000番</td>
-                </tr>
-            </table>
-
-            <div style="margin-top:12px; background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
-                <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">
-                    💡 番手が大きいほどリールも大きく、太いラインが巻けます。初心者はまずスピニングリールから始めましょう！
-                </p>
+            <div onclick="toggleDetail('reel3')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">③ ロッドとの組み合わせ</div>
+                <div id="reel3-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">
+                    詳細 <span id="reel3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span>
+                </div>
+            </div>
+            <div id="reel3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
+                        <tr style="background:rgba(240,165,0,0.2);"><th style="color:#f0e68c; padding:8px 6px; text-align:left; border-bottom:2px solid #f0a500;">ロッド</th><th style="color:#f0e68c; padding:8px 6px; text-align:left; border-bottom:2px solid #f0a500;">リール</th><th style="color:#f0e68c; padding:8px 6px; text-align:left; border-bottom:2px solid #f0a500;">番手</th></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:8px 6px;">アジングロッド</td><td style="color:#ddd; padding:8px 6px;">スピニング</td><td style="color:#ddd; padding:8px 6px;">1000〜2000番</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:8px 6px;">エギングロッド</td><td style="color:#ddd; padding:8px 6px;">スピニング</td><td style="color:#ddd; padding:8px 6px;">2500〜3000番</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:8px 6px;">シーバスロッド</td><td style="color:#ddd; padding:8px 6px;">スピニング</td><td style="color:#ddd; padding:8px 6px;">3000番</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:8px 6px;">サビキロッド</td><td style="color:#ddd; padding:8px 6px;">スピニング</td><td style="color:#ddd; padding:8px 6px;">2000〜3000番</td></tr>
+                        <tr><td style="color:#ddd; padding:8px 6px;">ライトショアジギングロッド</td><td style="color:#ddd; padding:8px 6px;">スピニング</td><td style="color:#ddd; padding:8px 6px;">4000番</td></tr>
+                    </table>
+                    <div style="margin-top:12px; background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;"><p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">💡 番手が大きいほどリールも大きく、太いラインが巻けます。初心者はまずスピニングリールから始めましょう！</p></div>
+                </div>
             </div>
         </div>
-
     </div>
-   <!-- ライン&リーダーコンテンツ -->
-    <div id="content-line" style="display:none; padding:0 12px;">
 
-        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">
-            → ライン&リーダー ←
-        </div>
+    <!-- ラインコンテンツ -->
+    <div id="content-line" style="display:none; padding:0 12px;">
+        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">→ ライン&リーダー ←</div>
 
         <!-- ① ライン・リーダーとは -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:10px;">① ライン・リーダーとは</div>
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-                <div style="font-size:48px; flex-shrink:0;">🧵</div>
-                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">
-                    ラインとはリールに巻く釣り糸のことです。リーダーはラインの先端に結ぶ短い糸で、魚に見切られにくくしたり根ズレ（岩などへの摩擦）を防ぐ役割があります。ラインとリーダーの組み合わせが釣果に大きく影響します！
-                </p>
+            <div onclick="toggleDetail('line1')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">① ライン・リーダーとは</div>
+                <div id="line1-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="line1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
             </div>
-
-            <!-- ラインの種類 -->
-            <div style="margin-top:12px;">
-                <div style="color:#f0e68c; font-size:13px; font-weight:bold; margin-bottom:8px;">主なラインの種類</div>
-
-                <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; margin-bottom:8px;">
-                    <div style="color:#4fc3f7; font-weight:bold; font-size:13px; margin-bottom:4px;">🔵 PEライン</div>
-                    <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.6;">細くて強い。感度が高く遠投しやすい。伸びがないのでアタリがわかりやすい。初心者はリーダーとの結束が必要。</p>
-                </div>
-
-                <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; margin-bottom:8px;">
-                    <div style="color:#81c784; font-weight:bold; font-size:13px; margin-bottom:4px;">🟢 ナイロンライン</div>
-                    <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.6;">扱いやすく初心者向け。伸びがあるのでバラしにくい。サビキ・投げ釣りに最適。紫外線で劣化しやすい。</p>
-                </div>
-
-                <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px;">
-                    <div style="color:#ffb74d; font-weight:bold; font-size:13px; margin-bottom:4px;">🟠 フロロカーボン</div>
-                    <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.6;">水に馴染みやすく魚に見えにくい。根ズレに強いのでリーダーに最適。硬めで扱いにやや慣れが必要。</p>
+            <div id="line1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:12px;">
+                        <div style="font-size:40px; flex-shrink:0;">🧵</div>
+                        <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">ラインとはリールに巻く釣り糸のことです。リーダーはラインの先端に結ぶ短い糸で、魚に見切られにくくしたり根ズレ（岩などへの摩擦）を防ぐ役割があります。ラインとリーダーの組み合わせが釣果に大きく影響します！</p>
+                    </div>
+                    <div style="color:#f0e68c; font-size:13px; font-weight:bold; margin-bottom:8px;">主なラインの種類</div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; margin-bottom:8px;">
+                        <div style="color:#4fc3f7; font-weight:bold; margin-bottom:4px;">🔵 PEライン</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">細くて強い。感度が高く遠投しやすい。伸びがないのでアタリがわかりやすい。初心者はリーダーとの結束が必要。</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px; margin-bottom:8px;">
+                        <div style="color:#81c784; font-weight:bold; margin-bottom:4px;">🟢 ナイロンライン</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">扱いやすく初心者向け。伸びがあるのでバラしにくい。サビキ・投げ釣りに最適。紫外線で劣化しやすい。</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:10px;">
+                        <div style="color:#ef9a9a; font-weight:bold; margin-bottom:4px;">🔴 フロロカーボン</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7;">水に馴染みやすく魚に見えにくい。根ズレに強いのでリーダーに最適。硬めで扱いにやや慣れが必要。</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ② 数値と耐えられるキロ数 -->
+        <!-- ② 号数と耐えられるキロ数 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">② 号数と耐えられるキロ数</div>
-
-            <!-- PEライン表 -->
-            <div style="color:#4fc3f7; font-size:13px; font-weight:bold; margin-bottom:6px;">🔵 PEライン</div>
-            <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px); margin-bottom:14px;">
-                <tr style="background:rgba(240,165,0,0.2);">
-                    <th style="color:#f0e68c; padding:7px 6px; text-align:center; border-bottom:2px solid #f0a500;">号数</th>
-                    <th style="color:#f0e68c; padding:7px 6px; text-align:center; border-bottom:2px solid #f0a500;">強度（lb）</th>
-                    <th style="color:#f0e68c; padding:7px 6px; text-align:center; border-bottom:2px solid #f0a500;">目安（kg）</th>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">0.2号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">4lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約1.8kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">0.4号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">8lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約3.6kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">0.6号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">12lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約5.4kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">0.8号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">16lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約7.2kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">1.0号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">20lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約9.0kg</td>
-                </tr>
-                <tr style="background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">2.0号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">35lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約15.9kg</td>
-                </tr>
-            </table>
-
-            <!-- ナイロン/フロロ表 -->
-            <div style="color:#81c784; font-size:13px; font-weight:bold; margin-bottom:6px;">🟢 ナイロン / 🟠 フロロカーボン</div>
-            <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
-                <tr style="background:rgba(240,165,0,0.2);">
-                    <th style="color:#f0e68c; padding:7px 6px; text-align:center; border-bottom:2px solid #f0a500;">号数</th>
-                    <th style="color:#f0e68c; padding:7px 6px; text-align:center; border-bottom:2px solid #f0a500;">強度（lb）</th>
-                    <th style="color:#f0e68c; padding:7px 6px; text-align:center; border-bottom:2px solid #f0a500;">目安（kg）</th>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">1号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">4lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約1.8kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">2号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">8lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約3.6kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">3号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">12lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約5.4kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">4号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">16lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約7.2kg</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">6号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">22lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約10.0kg</td>
-                </tr>
-                <tr style="background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">8号</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">30lb</td>
-                    <td style="color:#ddd; padding:7px 6px; text-align:center;">約13.6kg</td>
-                </tr>
-            </table>
+            <div onclick="toggleDetail('line2')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">② 号数と耐えられるキロ数</div>
+                <div id="line2-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="line2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
+            </div>
+            <div id="line2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="color:#4fc3f7; font-weight:bold; margin-bottom:8px;">🔵 PEライン</div>
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px); margin-bottom:12px;">
+                        <tr style="background:rgba(240,165,0,0.2);"><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">号数</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">強度（lb）</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">目安（kg）</th></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">0.2号</td><td style="color:#ddd; padding:7px 6px;">4lb</td><td style="color:#ddd; padding:7px 6px;">約1.8kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">0.4号</td><td style="color:#ddd; padding:7px 6px;">8lb</td><td style="color:#ddd; padding:7px 6px;">約3.6kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">0.6号</td><td style="color:#ddd; padding:7px 6px;">12lb</td><td style="color:#ddd; padding:7px 6px;">約5.4kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">0.8号</td><td style="color:#ddd; padding:7px 6px;">16lb</td><td style="color:#ddd; padding:7px 6px;">約7.2kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">1.0号</td><td style="color:#ddd; padding:7px 6px;">20lb</td><td style="color:#ddd; padding:7px 6px;">約9.0kg</td></tr>
+                        <tr><td style="color:#ddd; padding:7px 6px;">2.0号</td><td style="color:#ddd; padding:7px 6px;">35lb</td><td style="color:#ddd; padding:7px 6px;">約15.9kg</td></tr>
+                    </table>
+                    <div style="color:#f0a500; font-weight:bold; margin:12px 0 8px;">🟢 ナイロン / 🔴 フロロカーボン</div>
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
+                        <tr style="background:rgba(240,165,0,0.2);"><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">号数</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">強度（lb）</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">目安（kg）</th></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">1号</td><td style="color:#ddd; padding:7px 6px;">4lb</td><td style="color:#ddd; padding:7px 6px;">約1.8kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">2号</td><td style="color:#ddd; padding:7px 6px;">8lb</td><td style="color:#ddd; padding:7px 6px;">約3.6kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">3号</td><td style="color:#ddd; padding:7px 6px;">12lb</td><td style="color:#ddd; padding:7px 6px;">約5.4kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">4号</td><td style="color:#ddd; padding:7px 6px;">16lb</td><td style="color:#ddd; padding:7px 6px;">約7.2kg</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">6号</td><td style="color:#ddd; padding:7px 6px;">22lb</td><td style="color:#ddd; padding:7px 6px;">約10.0kg</td></tr>
+                        <tr><td style="color:#ddd; padding:7px 6px;">8号</td><td style="color:#ddd; padding:7px 6px;">30lb</td><td style="color:#ddd; padding:7px 6px;">約13.6kg</td></tr>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- ③ 適したリール・魚 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">③ 適したリール・魚</div>
-
-            <table style="width:100%; border-collapse:collapse; font-size:clamp(10px,2.8vw,13px);">
-                <tr style="background:rgba(240,165,0,0.2);">
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">ライン</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">号数</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">リール番手</th>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#4fc3f7; padding:7px 4px; font-weight:bold;">PE</td>
-                    <td style="color:#ddd; padding:7px 4px;">0.2〜0.4号</td>
-                    <td style="color:#ddd; padding:7px 4px;">アジ・メバル</td>
-                    <td style="color:#ddd; padding:7px 4px;">1000〜2000番</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#4fc3f7; padding:7px 4px; font-weight:bold;">PE</td>
-                    <td style="color:#ddd; padding:7px 4px;">0.6〜1.0号</td>
-                    <td style="color:#ddd; padding:7px 4px;">イカ</td>
-                    <td style="color:#ddd; padding:7px 4px;">2500〜3000番</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#4fc3f7; padding:7px 4px; font-weight:bold;">PE</td>
-                    <td style="color:#ddd; padding:7px 4px;">1.0〜1.5号</td>
-                    <td style="color:#ddd; padding:7px 4px;">シーバス</td>
-                    <td style="color:#ddd; padding:7px 4px;">3000番</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#4fc3f7; padding:7px 4px; font-weight:bold;">PE</td>
-                    <td style="color:#ddd; padding:7px 4px;">1.0〜2.0号</td>
-                    <td style="color:#ddd; padding:7px 4px;">イナダ・サバ</td>
-                    <td style="color:#ddd; padding:7px 4px;">4000番</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#81c784; padding:7px 4px; font-weight:bold;">ナイロン</td>
-                    <td style="color:#ddd; padding:7px 4px;">2〜4号</td>
-                    <td style="color:#ddd; padding:7px 4px;">アジ・イワシ・サバ</td>
-                    <td style="color:#ddd; padding:7px 4px;">2000〜3000番</td>
-                </tr>
-            </table>
-
-            <div style="margin-top:12px; background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
-                <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">
-                    💡 PEラインを使う場合は必ずフロロカーボンのリーダーをつけましょう！リーダーの長さは50cm〜1m程度が目安です。
-                </p>
+            <div onclick="toggleDetail('line3')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">③ 適したリール・魚</div>
+                <div id="line3-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="line3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
+            </div>
+            <div id="line3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px); margin-bottom:12px;">
+                        <tr style="background:rgba(240,165,0,0.2);"><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">ライン</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">号数</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">リール番手</th></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#4fc3f7; padding:7px 6px;">PE</td><td style="color:#ddd; padding:7px 6px;">0.2〜0.4号</td><td style="color:#ddd; padding:7px 6px;">アジ・メバル</td><td style="color:#ddd; padding:7px 6px;">1000〜2000番</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#4fc3f7; padding:7px 6px;">PE</td><td style="color:#ddd; padding:7px 6px;">0.6〜1.0号</td><td style="color:#ddd; padding:7px 6px;">イカ</td><td style="color:#ddd; padding:7px 6px;">2500〜3000番</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#4fc3f7; padding:7px 6px;">PE</td><td style="color:#ddd; padding:7px 6px;">1.0〜1.5号</td><td style="color:#ddd; padding:7px 6px;">シーバス</td><td style="color:#ddd; padding:7px 6px;">3000番</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#4fc3f7; padding:7px 6px;">PE</td><td style="color:#ddd; padding:7px 6px;">1.0〜2.0号</td><td style="color:#ddd; padding:7px 6px;">イナダ・サバ</td><td style="color:#ddd; padding:7px 6px;">4000番</td></tr>
+                        <tr><td style="color:#81c784; padding:7px 6px;">ナイロン</td><td style="color:#ddd; padding:7px 6px;">2〜4号</td><td style="color:#ddd; padding:7px 6px;">アジ・イワシ・サバ</td><td style="color:#ddd; padding:7px 6px;">2000〜3000番</td></tr>
+                    </table>
+                    <div style="background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
+                        <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">💡 PEラインを使う場合は必ずフロロカーボンのリーダーをつけましょう！リーダーの長さは50cm〜1m程度が目安です。</p>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
+
     <!-- スナップコンテンツ -->
     <div id="content-snap" style="display:none; padding:0 12px;">
-
-        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">
-            → スナップ ←
-        </div>
+        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">→ スナップ ←</div>
 
         <!-- ① スナップとは -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:10px;">① スナップとは</div>
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-                <div style="font-size:48px; flex-shrink:0;">🔗</div>
-                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">
-                    スナップとはリーダーの先端に付ける小さな金具です。ルアーやエギを素早く交換できるようにする道具で、結び直しの手間を省いてくれます。サイズや形によって適した釣りが異なります。スナップを使わない釣り（サビキ・アジング等）もあります。
-                </p>
+            <div onclick="toggleDetail('snap1')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">① スナップとは</div>
+                <div id="snap1-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="snap1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
             </div>
-
-            <div style="margin-top:12px; background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
-                <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">
-                    💡 スナップのサイズは小さすぎると強度不足、大きすぎるとルアーの動きが悪くなります。釣りに合わせたサイズを選びましょう！
-                </p>
+            <div id="snap1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:10px;">
+                        <div style="font-size:40px; flex-shrink:0;">🔗</div>
+                        <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">スナップとはリーダーの先端に付ける小さな金具です。ルアーやエギを素早く交換できるようにする道具で、結び直しの手間を省いてくれます。サイズや形によって適した釣りが異なります。スナップを使わない釣り（サビキ・アジング等）もあります。</p>
+                    </div>
+                    <div style="background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
+                        <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">💡 スナップのサイズは小さすぎると強度不足、大きすぎるとルアーの動きが悪くなります。釣りに合わせたサイズを選びましょう！</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- ② 形ごとの種類と適正 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">② 形ごとの種類と適正</div>
-
-            <!-- 丸型スナップ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:8px;">🔵 丸型スナップ（ラウンドスナップ）</div>
-                <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; white-space:nowrap; font-weight:bold; width:70px;">特徴</td>
-                        <td style="color:#ddd; padding:5px 0;">開閉が簡単で使いやすい定番形状</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">適正</td>
-                        <td style="color:#ddd; padding:5px 0;">エギング・シーバス・ライトゲーム</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">サイズ</td>
-                        <td style="color:#ddd; padding:5px 0;">#00〜#3（数字が大きいほど強度UP）</td>
-                    </tr>
-                    <tr>
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">強度</td>
-                        <td style="color:#ddd; padding:5px 0;">★★★☆☆ 中程度</td>
-                    </tr>
-                </table>
+            <div onclick="toggleDetail('snap2')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">② 形ごとの種類と適正</div>
+                <div id="snap2-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="snap2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
             </div>
-
-            <!-- 楕円型スナップ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:8px;">🟢 楕円型スナップ（オーバルスナップ）</div>
-                <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; white-space:nowrap; font-weight:bold; width:70px;">特徴</td>
-                        <td style="color:#ddd; padding:5px 0;">強度が高く大型魚にも対応</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">適正</td>
-                        <td style="color:#ddd; padding:5px 0;">ショアジギング・シーバス・青物</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">サイズ</td>
-                        <td style="color:#ddd; padding:5px 0;">#1〜#5</td>
-                    </tr>
-                    <tr>
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">強度</td>
-                        <td style="color:#ddd; padding:5px 0;">★★★★☆ 高め</td>
-                    </tr>
-                </table>
-            </div>
-
-            <!-- ソリッドリング+スナップ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:8px;">🟡 スプリットリング+スナップ</div>
-                <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; white-space:nowrap; font-weight:bold; width:70px;">特徴</td>
-                        <td style="color:#ddd; padding:5px 0;">ルアーのアクションを最大限に活かせる</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">適正</td>
-                        <td style="color:#ddd; padding:5px 0;">ミノー・バイブレーション・メタルジグ</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">サイズ</td>
-                        <td style="color:#ddd; padding:5px 0;">#1〜#4</td>
-                    </tr>
-                    <tr>
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">強度</td>
-                        <td style="color:#ddd; padding:5px 0;">★★★★★ 最高</td>
-                    </tr>
-                </table>
-            </div>
-
-            <!-- スナップなし -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:8px;">⚪ スナップなし（直結）</div>
-                <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; white-space:nowrap; font-weight:bold; width:70px;">特徴</td>
-                        <td style="color:#ddd; padding:5px 0;">金具なしでラインに直接結ぶ</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgba(240,165,0,0.2);">
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">適正</td>
-                        <td style="color:#ddd; padding:5px 0;">アジング・サビキ・フカセ釣り</td>
-                    </tr>
-                    <tr>
-                        <td style="color:#f0a500; padding:5px 8px 5px 0; font-weight:bold;">特徴</td>
-                        <td style="color:#ddd; padding:5px 0;">軽量で自然な動き・魚に見切られにくい</td>
-                    </tr>
-                </table>
+            <div id="snap2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
+                        <div style="color:#4fc3f7; font-weight:bold; margin-bottom:8px;">🔵 丸型スナップ（ラウンドスナップ）</div>
+                        <table style="width:100%; font-size:clamp(11px,3vw,13px);">
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0; width:50px;">特徴</td><td style="color:#ccc; padding:4px 0;">開閉が簡単で使いやすい定番形状</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">適正</td><td style="color:#ccc; padding:4px 0;">エギング・シーバス・ライトゲーム</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">サイズ</td><td style="color:#ccc; padding:4px 0;">#00〜#3（数字が大きいほど強度UP）</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">強度</td><td style="color:#ccc; padding:4px 0;">★★★☆☆ 中程度</td></tr>
+                        </table>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
+                        <div style="color:#81c784; font-weight:bold; margin-bottom:8px;">🟢 楕円型スナップ（オーバルスナップ）</div>
+                        <table style="width:100%; font-size:clamp(11px,3vw,13px);">
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0; width:50px;">特徴</td><td style="color:#ccc; padding:4px 0;">強度が高く大型魚にも対応</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">適正</td><td style="color:#ccc; padding:4px 0;">ショアジギング・シーバス・青物</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">サイズ</td><td style="color:#ccc; padding:4px 0;">#1〜#5</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">強度</td><td style="color:#ccc; padding:4px 0;">★★★★☆ 高め</td></tr>
+                        </table>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:8px;">🟡 スプリットリング＋スナップ</div>
+                        <table style="width:100%; font-size:clamp(11px,3vw,13px);">
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0; width:50px;">特徴</td><td style="color:#ccc; padding:4px 0;">ルアーのアクションを最大限に活かせる</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">適正</td><td style="color:#ccc; padding:4px 0;">ミノー・バイブレーション・メタルジグ</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">サイズ</td><td style="color:#ccc; padding:4px 0;">#1〜#4</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">強度</td><td style="color:#ccc; padding:4px 0;">★★★★★ 最高</td></tr>
+                        </table>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                        <div style="color:#aaa; font-weight:bold; margin-bottom:8px;">⚫ スナップなし（直結）</div>
+                        <table style="width:100%; font-size:clamp(11px,3vw,13px);">
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0; width:50px;">特徴</td><td style="color:#ccc; padding:4px 0;">金具なしでラインに直接結ぶ</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">適正</td><td style="color:#ccc; padding:4px 0;">アジング・サビキ・フカセ釣り</td></tr>
+                            <tr><td style="color:#f0a500; padding:4px 8px 4px 0;">特徴</td><td style="color:#ccc; padding:4px 0;">軽量で自然な動き・魚に見切られにくい</td></tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- サイズ早見表 -->
+        <!-- ③ サイズ早見表 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">📊 サイズ早見表</div>
-            <table style="width:100%; border-collapse:collapse; font-size:clamp(10px,2.8vw,13px);">
-                <tr style="background:rgba(240,165,0,0.2);">
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">サイズ</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">釣り方</th>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 4px;">#00・#0</td>
-                    <td style="color:#ddd; padding:7px 4px;">アジ・メバル</td>
-                    <td style="color:#ddd; padding:7px 4px;">ライトゲーム</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">#1</td>
-                    <td style="color:#ddd; padding:7px 4px;">イカ・メバル</td>
-                    <td style="color:#ddd; padding:7px 4px;">エギング</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 4px;">#2・#3</td>
-                    <td style="color:#ddd; padding:7px 4px;">シーバス</td>
-                    <td style="color:#ddd; padding:7px 4px;">シーバスゲーム</td>
-                </tr>
-                <tr style="background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">#4・#5</td>
-                    <td style="color:#ddd; padding:7px 4px;">青物・大型魚</td>
-                    <td style="color:#ddd; padding:7px 4px;">ショアジギング</td>
-                </tr>
-            </table>
+            <div onclick="toggleDetail('snap3')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">📋 サイズ早見表</div>
+                <div id="snap3-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="snap3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
+            </div>
+            <div id="snap3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
+                        <tr style="background:rgba(240,165,0,0.2);"><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">サイズ</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">釣り方</th></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">#00・#0</td><td style="color:#ddd; padding:7px 6px;">アジ・メバル</td><td style="color:#ddd; padding:7px 6px;">ライトゲーム</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">#1</td><td style="color:#ddd; padding:7px 6px;">イカ・メバル</td><td style="color:#ddd; padding:7px 6px;">エギング</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">#2・#3</td><td style="color:#ddd; padding:7px 6px;">シーバス</td><td style="color:#ddd; padding:7px 6px;">シーバスゲーム</td></tr>
+                        <tr><td style="color:#ddd; padding:7px 6px;">#4・#5</td><td style="color:#ddd; padding:7px 6px;">青物・大型魚</td><td style="color:#ddd; padding:7px 6px;">ショアジギング</td></tr>
+                    </table>
+                </div>
+            </div>
         </div>
-
     </div>
-   <!-- ルアーコンテンツ -->
-    <div id="content-lure" style="display:none; padding:0 12px;">
 
-        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">
-            → ルアー ←
-        </div>
+    <!-- ルアーコンテンツ -->
+    <div id="content-lure" style="display:none; padding:0 12px;">
+        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">→ ルアー ←</div>
 
         <!-- ① ルアーとは -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:10px;">① ルアーとは</div>
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-                <div style="font-size:48px; flex-shrink:0;">🪝</div>
-                <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">
-                    ルアーとは魚に見せて食いつかせる人工の疑似餌です。素材・形・動き方によって様々な種類があり、狙う魚や釣り場の状況に合わせて選びます。エサ釣りと違い繰り返し使えるのが特徴です！
-                </p>
+            <div onclick="toggleDetail('lure1')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">① ルアーとは</div>
+                <div id="lure1-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="lure1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
             </div>
-            <div style="margin-top:12px; background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
-                <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">
-                    💡 初心者はまずジグヘッド+ワームかメタルジグから始めるのがおすすめ！安くて扱いやすいです。
-                </p>
+            <div id="lure1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:10px;">
+                        <div style="font-size:40px; flex-shrink:0;">🪝</div>
+                        <p style="color:#ccc; font-size:clamp(12px,3vw,14px); line-height:1.8;">ルアーとは魚に見せて食いつかせる人工の疑似餌です。素材・形・動き方によって様々な種類があり、狙う魚や釣り場の状況に合わせて選びます。エサ釣りと違い繰り返し使えるのが特徴です！</p>
+                    </div>
+                    <div style="background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
+                        <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">💡 初心者はまずジグヘッド+ワームかメタルジグから始めるのがおすすめ！安くて扱いやすいです。</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- ② 種類 -->
+        <!-- ② ルアーの種類 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">② ルアーの種類</div>
-
-            <!-- ジグヘッド+ワーム -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🟢 ジグヘッド＋ワーム</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    鉛製のフック（ジグヘッド）にソフトな素材のワームを刺して使う。水中でふわふわと漂う動きが特徴。アジングで最もよく使われる。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初心者◎</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">0.5〜3g</span>
-                </div>
+            <div onclick="toggleDetail('lure2')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">② ルアーの種類</div>
+                <div id="lure2-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="lure2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
             </div>
-
-            <!-- メタルジグ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🔵 メタルジグ</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    金属製のルアー。重いので遠くまで飛ばせる。沈めてシャクって動かすのが基本。青物・シーバス・イナダなど幅広い魚に有効。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">20〜60g</span>
-                </div>
-            </div>
-
-            <!-- エギ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🦑 エギ</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    イカを狙う専用ルアー。エビに似た形でシャクって動かす。アオリイカ・コウイカに有効。エギングロッドと組み合わせて使う。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">2.5〜3.5号</span>
-                </div>
-            </div>
-
-            <!-- ミノー -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🐟 ミノー</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    小魚に似た形のハードルアー。リップ（舌状の部品）で水を受けてウォブリングする動きが特徴。シーバス・ヒラメに有効。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">中級</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">7〜14cm</span>
-                </div>
-            </div>
-
-            <!-- バイブレーション -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">📳 バイブレーション</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    巻くだけで激しく振動するハードルアー。底まで沈めてから巻き上げる使い方が基本。シーバス・ヒラメ・青物に有効。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">10〜30g</span>
-                </div>
-            </div>
-
-            <!-- サビキ仕掛け -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🎣 サビキ仕掛け</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    複数の擬似餌バリが連なった仕掛け。アミエビのカゴと一緒に使う。アジ・イワシ・サバが大量に釣れる。初心者でも簡単！
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">超初心者◎</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">3〜5号</span>
+            <div id="lure2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🟢 ジグヘッド＋ワーム</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">鉛製のフック（ジグヘッド）にソフトな素材のワームを刺して使う。水中でふわふわと漂う動きが特徴。アジングで最もよく使われる。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(129,199,132,0.2); border:1px solid #81c784; border-radius:12px; padding:2px 8px; font-size:11px; color:#81c784;">初心者◎</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">0.5〜3g</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🔵 メタルジグ</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">金属製のルアー。重いので遠くまで飛ばせる。沈めてシャクって動かすのが基本。青物・シーバス・イナダなど幅広い魚に有効。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(255,183,77,0.2); border:1px solid #ffb74d; border-radius:12px; padding:2px 8px; font-size:11px; color:#ffb74d;">初〜中級</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">20〜60g</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🦑 エギ</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">イカを狙う専用ルアー。エビに似た形でシャクって動かす。アオリイカ・コウイカに有効。エギングロッドと組み合わせて使う。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(255,183,77,0.2); border:1px solid #ffb74d; border-radius:12px; padding:2px 8px; font-size:11px; color:#ffb74d;">初〜中級</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">2.5〜3.5号</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🐟 ミノー</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">小魚に似た形のハードルアー。リップ（舌状の部品）で水を受けてウォブリングする動きが特徴。シーバス・ヒラメに有効。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(255,183,77,0.2); border:1px solid #ffb74d; border-radius:12px; padding:2px 8px; font-size:11px; color:#ffb74d;">中級</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">7〜14cm</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🟠 バイブレーション</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">巻くだけで激しく振動するハードルアー。底まで沈めてから巻き上げる使い方が基本。シーバス・ヒラメ・青物に有効。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(255,183,77,0.2); border:1px solid #ffb74d; border-radius:12px; padding:2px 8px; font-size:11px; color:#ffb74d;">初〜中級</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">10〜30g</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🎣 サビキ仕掛け</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">複数の擬似餌バリが連なった仕掛け。アミエビのカゴと一緒に使う。アジ・イワシ・サバが大量に釣れる。初心者でも簡単！</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(129,199,132,0.2); border:1px solid #81c784; border-radius:12px; padding:2px 8px; font-size:11px; color:#81c784;">超初心者◎</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">3〜5号</span></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ③ 適正表 -->
+        <!-- ③ ルアー適正表 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">③ ルアー適正表</div>
-
-            <table style="width:100%; border-collapse:collapse; font-size:clamp(10px,2.8vw,13px);">
-                <tr style="background:rgba(240,165,0,0.2);">
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">ルアー</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">難易度</th>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 4px;">ジグヘッド+ワーム</td>
-                    <td style="color:#ddd; padding:7px 4px;">アジ・メバル</td>
-                    <td style="color:#4fc3f7; padding:7px 4px;">★☆☆☆☆</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">サビキ仕掛け</td>
-                    <td style="color:#ddd; padding:7px 4px;">アジ・イワシ・サバ</td>
-                    <td style="color:#4fc3f7; padding:7px 4px;">★☆☆☆☆</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 4px;">メタルジグ</td>
-                    <td style="color:#ddd; padding:7px 4px;">青物・イナダ・サバ</td>
-                    <td style="color:#81c784; padding:7px 4px;">★★☆☆☆</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">エギ</td>
-                    <td style="color:#ddd; padding:7px 4px;">アオリイカ</td>
-                    <td style="color:#81c784; padding:7px 4px;">★★☆☆☆</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 4px;">バイブレーション</td>
-                    <td style="color:#ddd; padding:7px 4px;">シーバス・ヒラメ</td>
-                    <td style="color:#ffb74d; padding:7px 4px;">★★★☆☆</td>
-                </tr>
-                <tr style="background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">ミノー</td>
-                    <td style="color:#ddd; padding:7px 4px;">シーバス・ヒラメ</td>
-                    <td style="color:#ffb74d; padding:7px 4px;">★★★☆☆</td>
-                </tr>
-            </table>
+            <div onclick="toggleDetail('lure3')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">③ ルアー適正表</div>
+                <div id="lure3-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="lure3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
+            </div>
+            <div id="lure3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
+                        <tr style="background:rgba(240,165,0,0.2);"><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">ルアー</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">難易度</th></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">ジグヘッド+ワーム</td><td style="color:#ddd; padding:7px 6px;">アジ・メバル</td><td style="color:#f0a500; padding:7px 6px;">★☆☆☆☆</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">サビキ仕掛け</td><td style="color:#ddd; padding:7px 6px;">アジ・イワシ・サバ</td><td style="color:#f0a500; padding:7px 6px;">★☆☆☆☆</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">メタルジグ</td><td style="color:#ddd; padding:7px 6px;">青物・イナダ・サバ</td><td style="color:#f0a500; padding:7px 6px;">★★☆☆☆</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">エギ</td><td style="color:#ddd; padding:7px 6px;">アオリイカ</td><td style="color:#f0a500; padding:7px 6px;">★★☆☆☆</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">バイブレーション</td><td style="color:#ddd; padding:7px 6px;">シーバス・ヒラメ</td><td style="color:#f0a500; padding:7px 6px;">★★★☆☆</td></tr>
+                        <tr><td style="color:#ddd; padding:7px 6px;">ミノー</td><td style="color:#ddd; padding:7px 6px;">シーバス・ヒラメ</td><td style="color:#f0a500; padding:7px 6px;">★★★☆☆</td></tr>
+                    </table>
+                </div>
+            </div>
         </div>
-
     </div>
+
     <!-- 餌コンテンツ -->
     <div id="content-bait" style="display:none; padding:0 12px;">
-
-        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">
-            → 餌 ←
-        </div>
+        <div style="text-align:center; color:#f0e68c; font-size:clamp(18px,5vw,22px); font-weight:bold; margin:10px 0 14px; letter-spacing:4px;">→ 餌 ←</div>
 
         <!-- ① 餌の種類 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">① 餌の種類</div>
-
-            <!-- アミエビ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🦐 アミエビ</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    サビキ釣りの定番エサ。小さなエビの集合体でカゴに詰めて使う。釣具屋で冷凍パックで購入できる。においが強いので手袋があると便利。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">超初心者◎</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">冷凍販売</span>
-                </div>
+            <div onclick="toggleDetail('bait1')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">① 餌の種類</div>
+                <div id="bait1-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="bait1-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
             </div>
-
-            <!-- イソメ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🪱 イソメ（ゴカイ）</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    万能エサ。キスやカレイの投げ釣り・ちょい投げに最適。においと動きで魚を誘う。生きたまま針につけて使う。苦手な人はワームで代用も可。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初心者◎</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">生き餌</span>
-                </div>
-            </div>
-
-            <!-- オキアミ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🦞 オキアミ</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    フカセ釣り・チヌ釣りの定番エサ。南極オキアミという小型甲殻類。撒き餌（コマセ）と刺し餌の両方に使える。集魚効果が高い。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初〜中級</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">冷凍販売</span>
-                </div>
-            </div>
-
-            <!-- イカ短冊・サンマ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:10px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🦑 イカ短冊・サンマ</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    シーバス釣りのエサ。イカや魚の切り身を短冊状に切って使う。においが強く大型魚を引き寄せる。スーパーで購入できるので手軽。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初心者◎</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">スーパーで購入可</span>
-                </div>
-            </div>
-
-            <!-- ミミズ -->
-            <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
-                <div style="color:#f0e68c; font-size:clamp(13px,3.5vw,15px); font-weight:bold; margin-bottom:6px;">🪱 ミミズ・エビ</div>
-                <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:8px;">
-                    バス釣りや川釣りの定番エサ。自然界にいる生き物なので魚の警戒心が低い。釣具屋やコンビニで購入できる。
-                </p>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">初心者◎</span>
-                    <span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:3px 10px; font-size:11px; color:#f0e68c;">生き餌</span>
+            <div id="bait1" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🦐 アミエビ</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">サビキ釣りの定番エサ。小さなエビの集合体でカゴに詰めて使う。釣具屋で冷凍パックで購入できる。においが強いので手袋があると便利。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(129,199,132,0.2); border:1px solid #81c784; border-radius:12px; padding:2px 8px; font-size:11px; color:#81c784;">超初心者◎</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">冷凍販売</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🪱 イソメ（ゴカイ）</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">万能エサ。キスやカレイの投げ釣り・ちょい投げに最適。においと動きで魚を誘う。生きたまま針につけて使う。苦手な人はワームで代用も可。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(129,199,132,0.2); border:1px solid #81c784; border-radius:12px; padding:2px 8px; font-size:11px; color:#81c784;">初心者◎</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">生き餌</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🦐 オキアミ</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">フカセ釣り・チヌ釣りの定番エサ。南極オキアミという小型甲殻類。撒き餌（コマセ）と刺し餌の両方に使える。集魚効果が高い。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(255,183,77,0.2); border:1px solid #ffb74d; border-radius:12px; padding:2px 8px; font-size:11px; color:#ffb74d;">初〜中級</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">冷凍販売</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; margin-bottom:8px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🦑 イカ短冊・サンマ</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">シーバス釣りのエサ。イカや魚の切り身を短冊状に切って使う。においが強く大型魚を引き寄せる。スーパーで購入できるので手軽。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(129,199,132,0.2); border:1px solid #81c784; border-radius:12px; padding:2px 8px; font-size:11px; color:#81c784;">初心者◎</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">スーパーで購入可</span></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:12px;">
+                        <div style="color:#f0e68c; font-weight:bold; margin-bottom:4px;">🪱 ミミズ・エビ</div>
+                        <p style="color:#ccc; font-size:clamp(11px,3vw,13px); line-height:1.7; margin-bottom:6px;">バス釣りや川釣りの定番エサ。自然界にいる生き物なので魚の警戒心が低い。釣具屋やコンビニで購入できる。</p>
+                        <div style="display:flex; gap:6px;"><span style="background:rgba(129,199,132,0.2); border:1px solid #81c784; border-radius:12px; padding:2px 8px; font-size:11px; color:#81c784;">初心者◎</span><span style="background:rgba(240,165,0,0.2); border:1px solid #f0a500; border-radius:12px; padding:2px 8px; font-size:11px; color:#f0e68c;">生き餌</span></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ② 適正表 -->
+        <!-- ② 餌の適正表 -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">② 餌の適正表</div>
-
-            <table style="width:100%; border-collapse:collapse; font-size:clamp(10px,2.8vw,13px);">
-                <tr style="background:rgba(240,165,0,0.2);">
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">餌</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th>
-                    <th style="color:#f0e68c; padding:7px 4px; text-align:left; border-bottom:2px solid #f0a500;">釣り方</th>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 4px;">アミエビ</td>
-                    <td style="color:#ddd; padding:7px 4px;">アジ・イワシ・サバ</td>
-                    <td style="color:#ddd; padding:7px 4px;">サビキ釣り</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">イソメ</td>
-                    <td style="color:#ddd; padding:7px 4px;">キス・カレイ・チヌ</td>
-                    <td style="color:#ddd; padding:7px 4px;">投げ釣り・ちょい投げ</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3);">
-                    <td style="color:#ddd; padding:7px 4px;">オキアミ</td>
-                    <td style="color:#ddd; padding:7px 4px;">チヌ・グレ・メバル</td>
-                    <td style="color:#ddd; padding:7px 4px;">フカセ釣り</td>
-                </tr>
-                <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">イカ短冊・サンマ</td>
-                    <td style="color:#ddd; padding:7px 4px;">シーバス・タチウオ</td>
-                    <td style="color:#ddd; padding:7px 4px;">ぶっこみ釣り</td>
-                </tr>
-                <tr style="background:rgba(255,255,255,0.03);">
-                    <td style="color:#ddd; padding:7px 4px;">ミミズ・エビ</td>
-                    <td style="color:#ddd; padding:7px 4px;">バス・ブルーギル</td>
-                    <td style="color:#ddd; padding:7px 4px;">バス釣り・川釣り</td>
-                </tr>
-            </table>
+            <div onclick="toggleDetail('bait2')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">② 餌の適正表</div>
+                <div id="bait2-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="bait2-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
+            </div>
+            <div id="bait2" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <table style="width:100%; border-collapse:collapse; font-size:clamp(11px,3vw,13px);">
+                        <tr style="background:rgba(240,165,0,0.2);"><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">餌</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">対象魚</th><th style="color:#f0e68c; padding:7px 6px; text-align:left; border-bottom:2px solid #f0a500;">釣り方</th></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">アミエビ</td><td style="color:#ddd; padding:7px 6px;">アジ・イワシ・サバ</td><td style="color:#ddd; padding:7px 6px;">サビキ釣り</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">イソメ</td><td style="color:#ddd; padding:7px 6px;">キス・カレイ・チヌ</td><td style="color:#ddd; padding:7px 6px;">投げ釣り・ちょい投げ</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3);"><td style="color:#ddd; padding:7px 6px;">オキアミ</td><td style="color:#ddd; padding:7px 6px;">チヌ・グレ・メバル</td><td style="color:#ddd; padding:7px 6px;">フカセ釣り</td></tr>
+                        <tr style="border-bottom:1px solid rgba(240,165,0,0.3); background:rgba(255,255,255,0.03);"><td style="color:#ddd; padding:7px 6px;">イカ短冊・サンマ</td><td style="color:#ddd; padding:7px 6px;">シーバス・タチウオ</td><td style="color:#ddd; padding:7px 6px;">ぶっこみ釣り</td></tr>
+                        <tr><td style="color:#ddd; padding:7px 6px;">ミミズ・エビ</td><td style="color:#ddd; padding:7px 6px;">バス・ブルーギル</td><td style="color:#ddd; padding:7px 6px;">バス釣り・川釣り</td></tr>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- ③ ルアーとの違い -->
         <div style="background:linear-gradient(180deg,#051020,#0a1e38); border:2px solid #f0a500; border-radius:12px; padding:14px; margin-bottom:14px;">
-            <div style="color:#f0a500; font-size:15px; font-weight:bold; margin-bottom:12px;">③ ルアーとの違い</div>
-
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
-
-                <!-- エサ釣り -->
-                <div style="background:rgba(129,199,132,0.1); border:2px solid #81c784; border-radius:10px; padding:12px;">
-                    <div style="color:#81c784; font-weight:bold; font-size:13px; text-align:center; margin-bottom:10px;">🐛 エサ釣り</div>
-                    <p style="color:#ccc; font-size:clamp(10px,2.8vw,12px); line-height:1.7;">
-                        ✅ 釣れやすい<br>
-                        ✅ 初心者向け<br>
-                        ✅ 魚の警戒心低<br>
-                        ❌ 毎回購入必要<br>
-                        ❌ においが強い<br>
-                        ❌ 手が汚れる
-                    </p>
-                </div>
-
-                <!-- ルアー釣り -->
-                <div style="background:rgba(79,195,247,0.1); border:2px solid #4fc3f7; border-radius:10px; padding:12px;">
-                    <div style="color:#4fc3f7; font-weight:bold; font-size:13px; text-align:center; margin-bottom:10px;">🪝 ルアー釣り</div>
-                    <p style="color:#ccc; font-size:clamp(10px,2.8vw,12px); line-height:1.7;">
-                        ✅ 繰り返し使える<br>
-                        ✅ 手が汚れない<br>
-                        ✅ 大型魚を狙える<br>
-                        ❌ テクニック必要<br>
-                        ❌ 初期コストあり<br>
-                        ❌ 根掛かりのリスク
-                    </p>
-                </div>
+            <div onclick="toggleDetail('bait3')" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;">
+                <div style="color:#f0a500; font-size:15px; font-weight:bold;">③ ルアーとの違い</div>
+                <div id="bait3-btn" style="background:rgba(240,165,0,0.2); border:2px solid #f0a500; border-radius:8px; padding:4px 10px; color:#f0e68c; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:4px;">詳細 <span id="bait3-arrow" style="display:inline-block; transition:transform 0.3s;">▼</span></div>
             </div>
-
-            <div style="background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
-                <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">
-                    💡 初心者はまずエサ釣り（サビキ）から始めて、釣りの楽しさを覚えてからルアーに挑戦するのがおすすめです！
-                </p>
+            <div id="bait3" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+                <div style="margin-top:10px;">
+                    <div style="display:flex; gap:10px; margin-bottom:12px;">
+                        <div style="flex:1; background:rgba(129,199,132,0.1); border:1px solid #81c784; border-radius:10px; padding:12px;">
+                            <div style="color:#81c784; font-weight:bold; margin-bottom:8px; text-align:center;">🐛 エサ釣り</div>
+                            <div style="font-size:clamp(11px,3vw,12px); color:#ccc; line-height:1.8;">
+                                ✅ 釣れやすい<br>✅ 初心者向け<br>✅ 魚の警戒心低<br>❌ 毎回購入必要<br>❌ においが強い<br>❌ 手が汚れる
+                            </div>
+                        </div>
+                        <div style="flex:1; background:rgba(79,195,247,0.1); border:1px solid #4fc3f7; border-radius:10px; padding:12px;">
+                            <div style="color:#4fc3f7; font-weight:bold; margin-bottom:8px; text-align:center;">🪝 ルアー釣り</div>
+                            <div style="font-size:clamp(11px,3vw,12px); color:#ccc; line-height:1.8;">
+                                ✅ 繰り返し使える<br>✅ 手が汚れない<br>✅ 大型魚を狙える<br>❌ テクニック必要<br>❌ 初期コストあり<br>❌ 根掛かりのリスク
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background:rgba(240,165,0,0.1); border-left:3px solid #f0a500; padding:10px; border-radius:4px;">
+                        <p style="color:#f0e68c; font-size:clamp(11px,3vw,13px);">💡 初心者はまずエサ釣り（サビキ）から始めて、釣りの楽しさを覚えてからルアーに挑戦するのがおすすめです！</p>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 
 </div>
@@ -1002,17 +730,19 @@ function showTab(tab) {
     activeBtn.style.background = 'linear-gradient(180deg,#f0a500,#c07800)';
     activeBtn.style.color = '#fff';
 }
-
+const _detailOpen = {};
 function toggleDetail(id) {
     const el = document.getElementById(id);
     const arrow = document.getElementById(id + '-arrow');
-    if (el.style.display === 'none') {
-        el.style.display = 'block';
-        arrow.textContent = '▼';
-    } else {
-        el.style.display = 'none';
-        arrow.textContent = '▶';
-    }
+    if (_detailOpen[id]) {
+    el.style.maxHeight = '0';
+    el.style.marginTop = '0';
+    _detailOpen[id] = false;
+} else {
+    el.style.maxHeight = '3000px';
+    el.style.marginTop = '10px';
+    _detailOpen[id] = true;
+}
 }
 </script>
 

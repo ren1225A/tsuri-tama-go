@@ -108,3 +108,25 @@ class Catch(db.Model):
     size_cm = db.Column(db.Float)
     earned_points = db.Column(db.Integer, default=0)
 
+    fish = db.relationship('FishSpecies', backref='catches', lazy=True)
+    spot = db.relationship('FishingSpot', backref='catches', lazy=True)
+
+    from datetime import datetime
+
+class FishLog(db.Model):
+    __tablename__ = 'fish_log'
+    id              = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)  # ← 'user.id' を 'users.id' に変更
+    fish_name       = db.Column(db.String(100), nullable=False)
+    size_cm         = db.Column(db.Float, nullable=False)
+    photo_data      = db.Column(db.Text, nullable=True)
+    scientific_name = db.Column(db.String(200), nullable=True)
+    description     = db.Column(db.Text, nullable=True)
+    danger_level    = db.Column(db.Integer, nullable=True)
+    danger_reason   = db.Column(db.String(300), nullable=True)
+    rarity_level    = db.Column(db.Integer, nullable=True)
+    rarity_reason   = db.Column(db.String(300), nullable=True)
+    habitat         = db.Column(db.String(300), nullable=True)
+    caught_at       = db.Column(db.DateTime, default=datetime.utcnow)
+
+    user = db.relationship('User', backref='fish_logs')

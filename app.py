@@ -27,16 +27,18 @@ from models import db, User
 from routes.auth import auth_bp
 from routes.learn import learn_bp
 from routes.mission import mission_bp
-from routes.quest import quest_bp   # ← ここに移動
+from routes.quest import quest_bp
 from routes.badge import badge_bp
 from routes.catch import catch_bp
+from routes.fish_log import fish_log_bp  # ← ここに移動
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(learn_bp)
 app.register_blueprint(mission_bp)
-app.register_blueprint(quest_bp)   # ← ここに移動
+app.register_blueprint(quest_bp)
 app.register_blueprint(badge_bp)
 app.register_blueprint(catch_bp)
+app.register_blueprint(fish_log_bp)
 
 @app.route('/')
 def index():
