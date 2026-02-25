@@ -80,7 +80,7 @@
         </div>
 
         <!-- スタートボタン -->
-        <button onclick="startGame()" id="start-btn" style="
+        <button onclick="showLogin()" id="start-btn" style="
             padding: 1rem 3rem;
             font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', sans-serif;
             font-weight: 900;
@@ -98,8 +98,39 @@
             overflow: hidden;
         ">▶ スタート！</button>
 
-        <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); letter-spacing:0.15em; animation: title-in 0.8s ease-out 1s both;">
-            ver 1.0.0 — 勇者の旅が始まる
+        <!-- ログインフォーム（最初は非表示） -->
+        <div id="login-form" style="display:none; width:100%; max-width:300px; animation: title-in 0.5s ease-out both;">
+            <input id="login-username" type="text" placeholder="ユーザー名" style="
+                width:100%; padding:12px 16px; margin-bottom:10px;
+                border-radius:12px; border:2px solid #f5c842;
+                background:rgba(255,255,255,0.15); color:#fff;
+                font-size:16px; font-family:'M PLUS Rounded 1c',sans-serif;
+                outline:none; box-sizing:border-box;
+            ">
+            <input id="login-password" type="password" placeholder="合言葉（パスワード）" style="
+                width:100%; padding:12px 16px; margin-bottom:10px;
+                border-radius:12px; border:2px solid #f5c842;
+                background:rgba(255,255,255,0.15); color:#fff;
+                font-size:16px; font-family:'M PLUS Rounded 1c',sans-serif;
+                outline:none; box-sizing:border-box;
+            ">
+            <button onclick="doLogin()" style="
+                width:100%; padding:12px;
+                background:linear-gradient(135deg,#f5c842,#c49a1a);
+                border:none; border-radius:12px;
+                color:#0a2a4a; font-size:18px; font-weight:900;
+                cursor:pointer; margin-bottom:8px;
+                font-family:'M PLUS Rounded 1c',sans-serif;
+            ">ログイン</button>
+            <button onclick="showRegister()" style="
+                width:100%; padding:10px;
+                background:transparent;
+                border:2px solid #f5c842; border-radius:12px;
+                color:#f5c842; font-size:14px; font-weight:700;
+                cursor:pointer;
+                font-family:'M PLUS Rounded 1c',sans-serif;
+            ">新規登録はこちら</button>
+            <div id="login-error" style="color:#f87171; font-size:13px; margin-top:8px; text-align:center;"></div>
         </div>
     </div>
 </div>
@@ -171,6 +202,35 @@ if (sessionStorage.getItem('splash_shown') || new URLSearchParams(window.locatio
 }
 sessionStorage.setItem('splash_shown', 'true');
 // }
+function showLogin() {
+    document.getElementById('start-btn').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+}
+
+function doLogin() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+    if (!username || !password) {
+        document.getElementById('login-error').textContent = 'ユーザー名と合言葉を入力してください';
+        return;
+    }
+    fetch('/auth/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+        redirect: 'follow'
+    }).then(res => {
+        if (res.url.includes('login')) {
+            document.getElementById('login-error').textContent = 'ユーザー名か合言葉が違います';
+        } else {
+            window.location.href = '/';
+        }
+    });
+}
+
+function showRegister() {
+    window.location.href = '/auth/register';
+}
 </script>
 <!-- ===== ここまで追加：スプラッシュ画面 ===== -->
 
@@ -182,16 +242,16 @@ sessionStorage.setItem('splash_shown', 'true');
     <div class="header-content">
         <div class="title-banner">🎣 釣りたまGO!!</div>
         <div class="user-info">
-            <span class="username">勇者：ゲスト</span>
-            <span class="badge-icon">🐡</span>
-        </div>
-        <div class="level-display">
-            <span class="level-label">✦ LEVEL ✦</span>
-            <span class="level-number">?</span>
-            <div class="level-bar">
-                <div class="level-bar-fill"></div>
-            </div>
-        </div>
+    <span class="username">勇者：{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}ゲスト{% endif %}</span>
+    <span class="badge-icon">🐡</span>
+</div>
+<div class="level-display">
+    <span class="level-label">✦ LEVEL ✦</span>
+    <span class="level-number">{% if current_user.is_authenticated %}{{ current_user.level }}{% else %}?{% endif %}</span>
+    <div class="level-bar">
+        <div class="level-bar-fill"></div>
+    </div>
+</div>
     </div>
 </div>
 
@@ -218,14 +278,16 @@ sessionStorage.setItem('splash_shown', 'true');
 <div class="catch-log">
     <div class="catch-log-title">🏆 ～ ベストサイズ ～ 🏆</div>
     {% if best_catch %}
-    <div class="catch-card">
-        <div class="catch-photo">
-    {% if best_catch and best_catch.photo_data %}
-    <img src="{{ best_catch.photo_data }}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-    {% else %}
-    🐟
-    {% endif %}
-</div>
+    <div style="text-align:center;">
+        <div style="width:100%; max-height:220px; overflow:hidden; border-radius:12px; margin-bottom:12px;">
+            {% if best_catch.photo_data %}
+            <img src="{{ best_catch.photo_data }}" style="width:100%; height:220px; object-fit:cover; border-radius:12px;">
+            {% else %}
+            <div style="font-size:80px; line-height:220px;">🐟</div>
+            {% endif %}
+        </div>
+        <p style="font-size:22px; font-weight:900; color:#1A237E; margin-bottom:4px;">{{ best_catch.fish_name }}</p>
+        <p style="font-size:28px; font-weight:900; color:#2196F3;">📏 {{ best_catch.size_cm }} cm</p>
     </div>
     {% else %}
     <div class="catch-empty">
@@ -256,15 +318,6 @@ sessionStorage.setItem('splash_shown', 'true');
     </a>
 </div>
 
-<script>
-if (!localStorage.getItem('tsuri_username')) {
-    window.location.href = '/register';
-}
-const savedName = localStorage.getItem('tsuri_username');
-if (savedName) {
-    const el = document.querySelector('.username');
-    if (el) el.textContent = '勇者：' + savedName;
-}
-</script>
+
 
 {% endblock %}

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for
-from flask_login import current_user, login_required
+from flask_login import current_user
 from models import Quest, UserQuestProgress, db
 from datetime import datetime
 from routes.badge import check_and_award_badges
@@ -22,8 +22,10 @@ def show_quests():
 
 
 @quest_bp.route("/quests/complete/<int:quest_id>")
-@login_required
 def complete_quest(quest_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("quest.show_quests"))
+
     quest = Quest.query.get_or_404(quest_id)
 
     progress = UserQuestProgress.query.filter_by(
@@ -45,7 +47,7 @@ def complete_quest(quest_id):
         check_and_award_badges(current_user)
 
     if progress and progress.status == '完了':
-        return redirect(url_for("quest.show_quests"))   
+        return redirect(url_for("quest.show_quests"))
 
     elif progress.status != '完了':
         progress.status = '完了'
@@ -54,14 +56,16 @@ def complete_quest(quest_id):
         current_user.total_points += quest.reward_points
         db.session.commit()
         check_and_award_badges(current_user)
-        db.session.commit()  # ← 追加すると安全
+        db.session.commit()
 
     return redirect(url_for("quest.show_quests"))
 
 
 @quest_bp.route("/quests/reset/<int:quest_id>")
-@login_required
 def reset_quest(quest_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("quest.show_quests"))
+
     progress = UserQuestProgress.query.filter_by(
         user_id=current_user.id,
         quest_id=quest_id

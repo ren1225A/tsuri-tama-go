@@ -13,8 +13,12 @@ fish_log_bp = Blueprint("fish_log", __name__, url_prefix="/fish")
 @fish_log_bp.route("/")
 def index():
     from models import FishLog
-    fishes = FishLog.query.order_by(FishLog.caught_at.desc()).all()
-    best = FishLog.query.order_by(FishLog.size_cm.desc()).first()
+    if current_user.is_authenticated:
+        fishes = FishLog.query.filter_by(user_id=current_user.id).order_by(FishLog.caught_at.desc()).all()
+        best = FishLog.query.filter_by(user_id=current_user.id).order_by(FishLog.size_cm.desc()).first()
+    else:
+        fishes = []
+        best = None
     return render_template("fish_log.html", fishes=fishes, best=best)
 
 
@@ -102,10 +106,12 @@ def analyze_with_ai(fish_name: str, size_cm: float) -> dict:
 }}"""
 
     try:
-        import google.generativeai as genai
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash")
-        response = model.generate_content(prompt)
+        from google import genai
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt
+        )
         text = response.text.replace("```json", "").replace("```", "").strip()
         return json.loads(text)
     except Exception as e:

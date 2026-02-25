@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block bottom_nav %}{% endblock %}
 {% block content %}
 
 <style>
@@ -217,14 +217,16 @@
 
 <div class="fish-page">
 
-    <!-- ヘッダー -->
-<div class="detail-header">
+<!-- ヘッダー -->
+<div class="detail-header" style="display:flex; align-items:center; gap:10px; padding:16px 12px; border-bottom:2px solid #f0a500;">
     <a href="{{ url_for('index') }}" style="text-decoration:none;">
         <div style="background:linear-gradient(180deg,#3a6a9c,#1a3a6c); border:2px solid #f0a500; border-radius:10px; padding:8px 14px; color:#f0e68c; font-size:16px; font-weight:bold;">
             ← 戻る
         </div>
     </a>
-    <div class="detail-header-title">📖 魚図鑑</div>
+    <div style="flex:1; text-align:center; background:linear-gradient(180deg,#2a6aad,#1a4a8c); border:2px solid #f0a500; border-radius:8px; padding:10px; color:#f0e68c; font-size:20px; font-weight:bold;">
+        📖 魚図鑑
+    </div>
 </div>
     <!-- フラッシュメッセージ -->
     {% with messages = get_flashed_messages(with_categories=true) %}
