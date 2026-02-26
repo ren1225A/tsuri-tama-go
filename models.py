@@ -11,11 +11,14 @@ class User(db.Model, UserMixin):
     password = db.Column(db.Text, nullable=False)
     level = db.Column(db.Integer, default=1)
     total_points = db.Column(db.Integer, default=0)
+    read_guide = db.Column(db.Boolean, default=False)  # ★追加
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     quests = db.relationship('UserQuestProgress', backref='user', lazy=True)
     badges = db.relationship('UserBadge', back_populates='user', lazy=True)
     catches = db.relationship('Catch', backref='user', lazy=True)
+
+
 class Quest(db.Model):
     __tablename__ = 'quests'
     id = db.Column(db.Integer, primary_key=True)
@@ -26,9 +29,10 @@ class Quest(db.Model):
     badge_id = db.Column(db.Integer, db.ForeignKey('badges.id'))
     spot_id = db.Column(db.Integer, db.ForeignKey('fishing_spots.id'))
     order_index = db.Column(db.Integer, default=0)
-    
 
     badge = db.relationship('Badge', backref='quests', lazy=True)
+
+
 class UserQuestProgress(db.Model):
     __tablename__ = 'user_quest_progress'
     id = db.Column(db.Integer, primary_key=True)
@@ -38,25 +42,28 @@ class UserQuestProgress(db.Model):
     progress_percent = db.Column(db.Integer, default=0)
     completed_at = db.Column(db.DateTime)
 
+
 class Badge(db.Model):
     __tablename__ = 'badges'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
     image_url = db.Column(db.Text)
-    badge_type = db.Column(db.String(50))
-    # "reading" or "points"
+    badge_type = db.Column(db.String(50))  # "reading" or "points"
     required_points = db.Column(db.Integer, default=0)
 
     users = db.relationship('UserBadge', back_populates='badge', lazy=True)
+
+
 class UserBadge(db.Model):
     __tablename__ = 'user_badges'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     badge_id = db.Column(db.Integer, db.ForeignKey('badges.id'))
     earned_at = db.Column(db.DateTime, default=datetime.utcnow)
+
     user = db.relationship('User', back_populates='badges')
-    badge = db.relationship('Badge',back_populates='users')
+    badge = db.relationship('Badge', back_populates='users')
 
 
 class FishingSpot(db.Model):
@@ -69,6 +76,7 @@ class FishingSpot(db.Model):
     rules = db.Column(db.Text)
     tide_info = db.Column(db.Text)
 
+
 class FishSpecies(db.Model):
     __tablename__ = 'fish_species'
     id = db.Column(db.Integer, primary_key=True)
@@ -77,6 +85,7 @@ class FishSpecies(db.Model):
     description = db.Column(db.Text)
     season = db.Column(db.Text)
     habitat = db.Column(db.Text)
+
 
 class Catch(db.Model):
     __tablename__ = 'catches'
@@ -90,22 +99,21 @@ class Catch(db.Model):
     fish = db.relationship('FishSpecies', backref='catches', lazy=True)
     spot = db.relationship('FishingSpot', backref='catches', lazy=True)
 
-    from datetime import datetime
 
 class FishLog(db.Model):
     __tablename__ = 'fish_log'
-    id              = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)  # ← 'user.id' を 'users.id' に変更
-    fish_name       = db.Column(db.String(100), nullable=False)
-    size_cm         = db.Column(db.Float, nullable=False)
-    photo_data      = db.Column(db.Text, nullable=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    fish_name = db.Column(db.String(100), nullable=False)
+    size_cm = db.Column(db.Float, nullable=False)
+    photo_data = db.Column(db.Text, nullable=True)
     scientific_name = db.Column(db.String(200), nullable=True)
-    description     = db.Column(db.Text, nullable=True)
-    danger_level    = db.Column(db.Integer, nullable=True)
-    danger_reason   = db.Column(db.String(300), nullable=True)
-    rarity_level    = db.Column(db.Integer, nullable=True)
-    rarity_reason   = db.Column(db.String(300), nullable=True)
-    habitat         = db.Column(db.String(300), nullable=True)
-    caught_at       = db.Column(db.DateTime, default=datetime.utcnow)
+    description = db.Column(db.Text, nullable=True)
+    danger_level = db.Column(db.Integer, nullable=True)
+    danger_reason = db.Column(db.String(300), nullable=True)
+    rarity_level = db.Column(db.Integer, nullable=True)
+    rarity_reason = db.Column(db.String(300), nullable=True)
+    habitat = db.Column(db.String(300), nullable=True)
+    caught_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     user = db.relationship('User', backref='fish_logs')

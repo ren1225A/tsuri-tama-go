@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,41 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>釣りたまGO!!</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        /* ===== ポイント表示（レイアウト非干渉版） ===== */
+        .point-bar-container {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 170px;
+            background: rgba(255,255,255,0.95);
+            padding: 8px 10px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-size: 13px;
+            pointer-events: none; /* クリックを邪魔しない */
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #eee;
+            border-radius: 8px;
+            margin-top: 4px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f6c90e, #f39c12);
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
 
-    <main style="padding:0; margin:0;">
-        {% block content %}{% endblock %}
-    </main>
+{% if current_user.is_authenticated %}
+    {% set next_target = 50 %}
+    {% if current_user.total_points >= 50 %}{% set next_target = 100 %}{% endif %}
+    {% if current_user.total_points >= 100 %}{% set next_target = 200 %}{% endif %}
+    {% if current_user.total_points >= 200 %}{% set next_target = 500 %}{% endif %}
+    {% if current_user.total_points >= 500 %}{% set next_target = 1000 %}{% endif %}
 
-    {% block bottom_nav %}
-    <nav class="bottom-nav" id="bottom-nav"></nav>
-        <a href="/fish/">
-    <div class="nav-item">
-        <span>📖</span>
-        <span>魚図鑑</span>
+    {% set progress_percent = (current_user.total_points / next_target) * 100 %}
+    {% if progress_percent > 100 %}{% set progress_percent = 100 %}{% endif %}
+
+    <div class="point-bar-container">
+        🪙 {{ current_user.total_points }} pt<br>
+        次のバッジまで {{ next_target - current_user.total_points }} pt
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ progress_percent }}%;"></div>
+        </div>
     </div>
-</a>
-        <a href="/quests/">
-            <div class="nav-item">
-                <span>📜</span>
-                <span>クエスト</span>
-            </div>
-        </a>
-        <a href="/learn/tools">
-            <div class="nav-item">
-                <span>🎣</span>
-                <span>道具</span>
-            </div>
-        </a>
-        <a href="/catch">
-            <div class="nav-item">
-                <span>🏆</span>
-                <span>記録</span>
-            </div>
-        </a>
-    </nav>
-    {% endblock %}
+{% endif %}
+
+<!-- 下ナビ固定対策 -->
+<main style="padding-bottom:100px;">
+    {% block content %}{% endblock %}
+</main>
+
+{% block bottom_nav %}
+<nav class="bottom-nav" id="bottom-nav">
+    <a href="/fish/">
+        <div class="nav-item">
+            <span>📖</span>
+            <span>魚図鑑</span>
+        </div>
+    </a>
+
+    <a href="/quests/">
+        <div class="nav-item">
+            <span>📜</span>
+            <span>クエスト</span>
+        </div>
+    </a>
+
+    <a href="{{ url_for('badge.badge_list') }}">
+        <div class="nav-item">
+            <span>🏅</span>
+            <span>バッジ</span>
+        </div>
+    </a>
+
+    <a href="/learn/tools">
+        <div class="nav-item">
+            <span>🎣</span>
+            <span>道具</span>
+        </div>
+    </a>
+</nav>
+{% endblock %}
 
 </body>
 </html>
