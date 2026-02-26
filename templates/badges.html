@@ -1,7 +1,88 @@
-<h1>バッジ一覧</h1>
+{% extends "base.html" %}
+{% block content %}
 
-<ul>
-{% for badge in badges %}
-  <li>{{ badge.name }}</li>
-{% endfor %}
-</ul>
+<style>
+.badge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.badge-item {
+    padding: 15px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+.badge-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
+
+/* 未取得 */
+.badge-locked {
+    border: 2px dashed #ccc;
+    background: #f5f5f5;
+}
+
+.badge-locked img {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+/* 取得済 */
+.badge-earned img {
+    filter: drop-shadow(0 0 15px gold);
+}
+
+.badge-name {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.badge-condition {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+}
+</style>
+
+<h2 style="text-align:center;">🏅 バッジ一覧</h2>
+
+<div class="badge-grid">
+    {% for badge in badges %}
+        {% set earned = badge.id in earned_ids %}
+
+        <div class="badge-item {% if earned %}badge-earned{% else %}badge-locked{% endif %}">
+            
+            <img src="{{ badge.image_url if badge.image_url else url_for('static', filename='images/medal.png') }}">
+
+            <div class="badge-name">
+                {{ badge.name }}
+            </div>
+
+            <div class="badge-condition">
+                {% if badge.required_points %}
+                    {{ badge.required_points }}ptで獲得
+                {% else %}
+                    特殊条件
+                {% endif %}
+            </div>
+
+            {% if not earned %}
+                <div style="margin-top:6px; font-size:12px; color:#999;">
+                    🔒 未取得
+                </div>
+            {% endif %}
+
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

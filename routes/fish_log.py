@@ -47,8 +47,10 @@ def register():
 
         ai_result = analyze_with_ai(fish_name, size_cm)
 
-        from models import FishLog
+        from models import FishLog, User
+
         user_id = current_user.id if current_user.is_authenticated else None
+
         entry = FishLog(
             user_id         = user_id,
             fish_name       = fish_name,
@@ -62,8 +64,30 @@ def register():
             rarity_reason   = ai_result.get("rarityReason"),
             habitat         = ai_result.get("habitat"),
         )
+
         db.session.add(entry)
         db.session.commit()
+
+
+        # ===============================
+        # 🔥 ここから追加（ポイント加算）
+        # ===============================
+        if current_user.is_authenticated:
+            earned_points = int(size_cm)  # 1cm = 1ポイント
+            current_user.total_points += earned_points
+            flash(f"+{earned_points}ポイント獲得！", "success")
+
+        flash(f"「{fish_name}」を図鑑に登録しました！", "success")
+        return redirect(url_for("fish_log.detail", fish_id=entry.id))
+
+
+
+        # ===============================
+        # 🏆 バッジ判定
+        # ===============================
+        if current_user.is_authenticated:
+            from routes.badge import check_and_award_badges
+            check_and_award_badges(current_user)
 
         flash(f"「{fish_name}」を図鑑に登録しました！", "success")
         return redirect(url_for("fish_log.detail", fish_id=entry.id))
@@ -117,6 +141,7 @@ def analyze_with_ai(fish_name: str, size_cm: float) -> dict:
     except Exception as e:
         print(f"AI分析エラー: {e}")
         return _fallback_result()
+
 
 def _fallback_result():
     return {
